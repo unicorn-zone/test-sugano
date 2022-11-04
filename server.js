@@ -12,6 +12,7 @@ serve(async (req) => {
   console.log(pathname);
 
   if (req.method === "POST" && pathname === "/code_info") {
+    const requestJson = await req.json();
     spObj = await supabase.from('testtb').insert(requestJson);
   }
 
