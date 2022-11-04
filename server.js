@@ -1,6 +1,6 @@
 import { serve } from "https://deno.land/std@0.138.0/http/server.ts";
 
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@1.34.0'
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@1.34.0';
 
 const supabaseUrl = 'https://wobbwwarztalycvfzbrk.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndvYmJ3d2FyenRhbHljdmZ6YnJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njc1NDczMzcsImV4cCI6MTk4MzEyMzMzN30.st9kLjwidM-T1iOxZjqsvxx4xtfe4xN597mjnRhImDE';
