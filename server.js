@@ -20,7 +20,7 @@ serve(async (req) => {
       let time = spObj.data[id].created_at;
       return new Response(comment + '@' + time);
     } else {
-      return new Response(obj.error.message);
+      return new Response(obj.error.message + 'エラーです');
     }
   }
 
