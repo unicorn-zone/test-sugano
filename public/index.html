@@ -7,6 +7,7 @@
 </head>
 
 <body>
+  <nobr id = "now"></nobr>
   <h1>見出しです！!!!</h1>
   <input id="comment" type="text" />
   <button id="submit">送信</button>
@@ -15,6 +16,14 @@
   <nobr id = "time_out"></nobr>
 
   <script type="module">
+    window.onload = async (event) => {
+      let now = Date.now();
+      let today = Date(now);
+
+      let para0 = document.querySelector("#now");
+      para0.innerText = `${today}`;
+    }
+
     document.querySelector("#show").onclick = async (event) => {
       const id = 1;
       const response = await fetch("/get_db", {
