@@ -31,10 +31,10 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id })
       });
-      let result = await response.text();
-      let data = result.split('@');
-      let comment = data[0];
-      let time = data[1];
+      let comment = await response.text();
+      //let data = result.split('@');
+      //let comment = data[0];
+      //let time = data[1];
 
       let para = document.querySelector("#comment_out");
       para.innerText = `${comment}`;

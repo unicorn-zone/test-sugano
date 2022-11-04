@@ -14,11 +14,12 @@ serve(async (req) => {
   if (req.method === "POST" && pathname === "/get_db") {
     const requestJson = await req.json();
     let id = Number(requestJson.id);
-    const { data, error } = await supabase.from('comment').select();
+    const comment = await supabase.from('testtb').select('comment');
     if (spObj.error == null) {
-      let comment = spObj.data[id].comment;
-      let time = spObj.data[id].created_at;
-      return new Response(comment + '@' + time);
+      //let comment = spObj.data[id].comment;
+      //let time = spObj.data[id].created_at;
+      return new Response(comment);
+      //return new Response(comment + '@' + time);
     } else {
       return new Response(spObj.error.message);
     }
@@ -26,7 +27,7 @@ serve(async (req) => {
 
   if (req.method === "POST" && pathname === "/code_info") {
     const requestJson = await req.json();
-    spObj = await supabase.from('comment').insert(requestJson);
+    spObj = await supabase.from('testtb').insert(requestJson);
   }
 
 
