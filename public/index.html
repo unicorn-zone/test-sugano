@@ -9,18 +9,22 @@
 <body>
   <h1>見出しです！！！！！！</h1>
   <input id="comment" type="text" />
-  <br>
   <button id="submit">送信</button>
 
   <script type="module">
-    const comment = document.querySelector("#comment").value;
-    alert("データベースに送信します");
-    const response = await fetch("/code_info", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ comment })
-    });
-    alert("データベースに送ったよ");
+    document.querySelector("#tweet").onclick = async (event) => {
+      const comment = document.querySelector("#comment").value;
+      
+      alert("データベースに送信します");
+
+      const response = await fetch("/code_info", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ comment })
+      });
+      
+      alert("データベースに送ったよ");
+    }
   </script>
 
 </body>
