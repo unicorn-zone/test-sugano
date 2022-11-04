@@ -6,19 +6,21 @@
 </head>
 <body>
   <h1>Hello World!</h1>
+  <div><input id="comment" type="text" /></div>
   <button id="submit">送信</button>
+
+  <script type="module">
+    document.querySelector("#submit").onclick = async (event) => {
+  
+      let comment = document.querySelector("#comment").value;
+      const response = await fetch("/code_info", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ comment })
+      });
+  
+    }
+  </script>
+
 </body>
 </html>
-
-<script type="module">
-  document.querySelector("#test").onclick = async (event) => {
-
-    let comment = document.querySelector("#comment").value;
-    const response = await fetch("/code_info", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ comment })
-    });
-
-  }
-</script>
