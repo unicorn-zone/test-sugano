@@ -1,7 +1,5 @@
 import { serve } from "https://deno.land/std@0.138.0/http/server.ts";
 
-import supabase from "../config/supabaseClient"
-import { useEffect, useState } from 'react'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@1.34.0';
 
 const supabaseUrl = 'https://wobbwwarztalycvfzbrk.supabase.co';
