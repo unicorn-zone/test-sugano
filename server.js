@@ -2,11 +2,11 @@ import { serve } from "https://deno.land/std@0.138.0/http/server.ts";
 import { serveDir } from "https://deno.land/std@0.151.0/http/file_server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@1.34.0';
 
-let url = 'https://wobbwwarztalycvfzbrk.supabase.co';
-let anon_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndvYmJ3d2FyenRhbHljdmZ6YnJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njc1NDczMzcsImV4cCI6MTk4MzEyMzMzN30.st9kLjwidM-T1iOxZjqsvxx4xtfe4xN597mjnRhImDE';
+let url = 'https://ekzwclcfheomwmnteywk.supabase.co';
+let anon_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrendjbGNmaGVvbXdtbnRleXdrIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njc1NzE2NjQsImV4cCI6MTk4MzE0NzY2NH0.5ZeHJT23ZrIzOWJQtP4AncFpqCMp-lB2xbxXF592zpg';
 const supabase = createClient(url, anon_key);
 let obj;
-let main_obj = await supabase.from('testtb').select();
+let main_obj = await supabase.from('calendar').select();
 let post_key = 0;
 let post_flg = 0;
 
@@ -16,13 +16,13 @@ serve(async (req) => {
 
   //　コーディネート初期化
   if (req.method === "GET" && pathname === "/reset_obj") {
-    main_obj = await supabase.from('testtb').select();
+    main_obj = await supabase.from('calendar').select();
   }
 
   // コーディネートの投稿
   if (req.method === "POST" && pathname === "/code_info") {
     const requestJson = await req.json();
-    obj = await supabase.from('testtb').insert(requestJson); // testtbへデータ挿入
+    obj = await supabase.from('calendar').insert(requestJson); // calendarへデータ挿入
     post_flg++;
     if (obj.error == null) {
       return new Response("finished");
@@ -35,7 +35,7 @@ serve(async (req) => {
   async function base_select() {
     if (post_key != post_flg) {
       post_key = post_flg;
-      main_obj = await supabase.from('testtb').select();
+      main_obj = await supabase.from('calendar').select();
     }
     return main_obj;
   };
@@ -66,10 +66,10 @@ serve(async (req) => {
   if (req.method === "POST" && pathname === "/code_info_del") {
     const requestJson = await req.json();
     let id_del = Number(requestJson.id);
-    obj = await supabase.from('testtb').select();
+    obj = await supabase.from('calendar').select();
     if (obj.error == null) {
       let id = obj.data[id_del].id;
-      obj = await supabase.from('testtb').delete().match({ id });
+      obj = await supabase.from('calendar').delete().match({ id });
       post_flg++;
       return new Response(id_del-1);
     }

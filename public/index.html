@@ -35,8 +35,8 @@
     }
 
     window.onload = async (event) => {
-      const response = await fetch("/reset_obj");
-      const response_id = await fetch("/code_info");
+      const response = await fetch("/reset_obj"); // GET
+      const response_id = await fetch("/code_info"); // GET
       let max_id = await response_id.text();
       max_id = Number(max_id); // 1~idまでが時系列
       reload(max_id);
