@@ -2,8 +2,8 @@ import { serve } from "https://deno.land/std@0.138.0/http/server.ts";
 
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://wobbwwarztalycvfzbrk.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndvYmJ3d2FyenRhbHljdmZ6YnJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njc1NDczMzcsImV4cCI6MTk4MzEyMzMzN30.st9kLjwidM-T1iOxZjqsvxx4xtfe4xN597mjnRhImDE';
+let supabaseUrl = 'https://wobbwwarztalycvfzbrk.supabase.co';
+let supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndvYmJ3d2FyenRhbHljdmZ6YnJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njc1NDczMzcsImV4cCI6MTk4MzEyMzMzN30.st9kLjwidM-T1iOxZjqsvxx4xtfe4xN597mjnRhImDE';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 
