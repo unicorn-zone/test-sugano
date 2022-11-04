@@ -1,20 +1,9 @@
 import { serve } from "https://deno.land/std@0.138.0/http/server.ts";
 
-//supabase
-import { createClient } from '@supabase/supabase-js';
-const spUrl = 'https://wobbwwarztalycvfzbrk.supabase.co';
-const spKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndvYmJ3d2FyenRhbHljdmZ6YnJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njc1NDczMzcsImV4cCI6MTk4MzEyMzMzN30.st9kLjwidM-T1iOxZjqsvxx4xtfe4xN597mjnRhImDE';
-const supabase = createClient(spUrl, spKey);
-let spObj;
-
+console.log("Listening on http://localhost:8000");
 serve(async (req) => {
   const pathname = new URL(req.url).pathname;
   console.log(pathname);
-
-  if (req.method === "POST" && pathname === "/code_info") {
-    const requestJson = await req.json();
-    spObj = await supabase.from('testtb').insert(requestJson);
-  }
 
   if (pathname === "/styles.css") {
     return new Response(await Deno.readTextFile("./public/styles.css"), {
