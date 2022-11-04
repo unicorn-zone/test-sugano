@@ -7,12 +7,34 @@
 </head>
 
 <body>
-  <h1>見出しです！！！！！！</h1>
+  <h1>見出しです！</h1>
   <input id="comment" type="text" />
   <button id="submit">送信</button>
+  <button id="show">表示</button>
+  <nobr id = "comment_out"></nobr>
+  <nobr id = "time_out"></nobr>
 
   <script type="module">
-    document.querySelector("#tweet").onclick = async (event) => {
+    document.querySelector("#show").onclick = async (event) => {
+      const id = 1;
+      const response = await fetch("/get_db", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id })
+      });
+      let result = await response.text();
+      let data = result.split('@');
+      let comment = data[0];
+      let time = data[1];
+
+      let para = document.querySelector("#comment_out");
+      para.innerText = `${comment}`;
+
+      let para1 = document.querySelector("#time_out");
+      para1.innerText = `${time}`;
+    }
+
+    document.querySelector("#submit").onclick = async (event) => {
       const comment = document.querySelector("#comment").value;
       
       alert("データベースに送信します");
@@ -22,7 +44,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ comment })
       });
-      
+
       alert("データベースに送ったよ");
     }
   </script>
