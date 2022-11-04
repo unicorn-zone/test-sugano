@@ -14,7 +14,7 @@ serve(async (req) => {
   if (req.method === "POST" && pathname === "/get_db") {
     const requestJson = await req.json();
     let id = Number(requestJson.id);
-    const comment = await supabase.from('testtb').select('comment');
+    const comment = await supabase.from('testtb').select('comment').eq('id', '1');
     if (spObj.error == null) {
       //let comment = spObj.data[id].comment;
       //let time = spObj.data[id].created_at;
