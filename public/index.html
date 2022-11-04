@@ -8,9 +8,19 @@
 
 <body>
   <h1>見出しです</h1>
-  <input id="nextWordInput" type="text" />
+  <input id="comment" type="text" />
   <br>
-  <button id="nextWordSendButton">送信</button>
+  <button id="submit">送信</button>
+
+  <script type="module">
+    const comment = document.querySelector("#comment").value;
+    const response = await fetch("/code_info", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ comment })
+    });
+  </script>
+
 </body>
 
 </html>
