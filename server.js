@@ -36,14 +36,18 @@ serve(async (req) => {
 
   if (req.method === "POST" && pathname === "/code_info2") {
     const requestJson = await req.json();
-    let id = Number(requestJson.id);
-    obj = await base_select();
+    let group = requestJson.group;
+    obj = await supabase.from('calendar').select().rangeGt('date_start', '[2022-11-01 00:00, 2022-11-01 00:00)').eq('group', group);
     if (obj.error == null) {
-      let data = obj.data[0].comment + '@';
-      data = data + obj.data[0].created_at + '@';
-      for (let i = 1; i < id; i++) {
-        data = data + obj.data[i].comment + '@';
-        data = data + obj.data[i].created_at + '@';// ------------------ ここが最後に触った場所 ------------------
+      let data = obj.data[0].created_at + '||';
+      data = data + obj.data[0].date_start + '||';
+      data = data + obj.data[0].date_end + '||';
+      data = data + obj.data[0].comment + '@@';
+      for (let i = 1; i < obj.data.length-1; i++) {
+        data = data + obj.data[i].created_at + '||';
+        data = data + obj.data[i].date_start + '||';
+        data = data + obj.data[i].date_end + '||';
+        data = data + obj.data[i].comment + '@@';
       }
       return new Response(data);
     } else {

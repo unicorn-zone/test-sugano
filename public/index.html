@@ -16,17 +16,27 @@
   <nobr id = "time_out"></nobr>
 
   <script type="module">
-    async function reload(id){
+    async function reload(group){
       const response = await fetch("/code_info2", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id })
+        body: JSON.stringify({ group })
       });
       let result = await response.text();
-      let data = result.split('@');
+      let data = result.split('@@');
       
-      let comment = data[0];
-      let time = data[1];
+      for (let i = 0; i < data.length-1; i++) {
+        let data2 = data.split('||');
+        let created_at = data2[i];
+        let date_start = data2[i];
+        let date_end = data2[i];
+        let comment = data2[i];
+        console.log('------------------------------------');
+        console.log(created_at);
+        console.log(date_start);
+        console.log(date_end);
+        console.log(comment);
+      }
 
       let para = document.querySelector("#comment_out");
       para.innerText = `${comment}`;
@@ -37,10 +47,8 @@
 
     window.onload = async (event) => {
       const response = await fetch("/reset_obj"); // GET
-      const response_id = await fetch("/code_info"); // GET
-      let max_id = await response_id.text();
-      max_id = Number(max_id); // 1~idまでが時系列
-      reload(max_id);
+      let group = 1;
+      reload(group);
     }
 
     document.querySelector("#submit").onclick = async (event) => {
