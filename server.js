@@ -37,7 +37,7 @@ serve(async (req) => {
   if (req.method === "POST" && pathname === "/code_info2") {
     const requestJson = await req.json();
     let group = requestJson.group;
-    obj = await supabase.from('calendar').select().eq('group', group);
+    obj = await supabase.from('calendar').select().eq('group', group).rangeGt('date_start', '[2022-11-01 00:00, 2022-11-01 00:00)');
     if (obj.error == null) {
       let data = obj.data[0].created_at + '||';
       data = data + obj.data[0].date_start + '||';
