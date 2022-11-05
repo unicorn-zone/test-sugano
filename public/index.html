@@ -28,10 +28,10 @@
         
         for (let i = 0; i < data.length-1; i++) {
           let data2 = data[i].split('||');
-          let created_at = data2[i];
-          let date_start = data2[i];
-          let date_end = data2[i];
-          let comment = data2[i];
+          let created_at = data2[0];
+          let date_start = data2[1];
+          let date_end = data2[2];
+          let comment = data2[3];
           console.log('------------------------------------');
           console.log(created_at);
           console.log(date_start);
