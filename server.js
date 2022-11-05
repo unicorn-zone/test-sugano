@@ -42,7 +42,7 @@ serve(async (req) => {
       .select()
       .eq('group', group)
       .lt('date_start', '[2022-11-01 00:00)')
-      .gt('date_start', '[2022-11-01 00:00)');
+      .gt('date_start', '[2022-12-01 00:00)');
 
     if (obj.error == null) {
       let data = obj.data[0].created_at + '||';
