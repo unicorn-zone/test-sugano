@@ -32,12 +32,13 @@
           let date_start = data2[1];
           let date_end = data2[2];
           let comment = data2[3];
-          if (date_start.includes(`${time}`))
+          if (date_start.includes(`${time}`)){
             console.log('------------------------------------');
             console.log(created_at);
             console.log(date_start);
             console.log(date_end);
             console.log(comment);
+          }
         }
 
         let para = document.querySelector("#comment_out");
