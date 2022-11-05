@@ -27,7 +27,7 @@
         let data = result.split('@@');
         
         for (let i = 0; i < data.length-1; i++) {
-          let data2 = data.split('||');
+          let data2 = data[i].split('||');
           let created_at = data2[i];
           let date_start = data2[i];
           let date_end = data2[i];
