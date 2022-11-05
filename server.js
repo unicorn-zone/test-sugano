@@ -51,7 +51,7 @@ serve(async (req) => {
       }
       return new Response(data);
     } else {
-      return new Response(obj.error.message);
+      return new Response('error');
     }
   }
 

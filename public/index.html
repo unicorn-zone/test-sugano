@@ -23,30 +23,33 @@
         body: JSON.stringify({ group })
       });
       let result = await response.text();
-      let data = result.split('@@');
-      
-      for (let i = 0; i < data.length-1; i++) {
-        let data2 = data.split('||');
-        let created_at = data2[i];
-        let date_start = data2[i];
-        let date_end = data2[i];
-        let comment = data2[i];
-        console.log('------------------------------------');
-        console.log(created_at);
-        console.log(date_start);
-        console.log(date_end);
-        console.log(comment);
+      if (result != 'error'){
+        let data = result.split('@@');
+        
+        for (let i = 0; i < data.length-1; i++) {
+          let data2 = data.split('||');
+          let created_at = data2[i];
+          let date_start = data2[i];
+          let date_end = data2[i];
+          let comment = data2[i];
+          console.log('------------------------------------');
+          console.log(created_at);
+          console.log(date_start);
+          console.log(date_end);
+          console.log(comment);
+        }
+
+        let para = document.querySelector("#comment_out");
+        para.innerText = `${comment}`;
+
+        //let para1 = document.querySelector("#time_out");
+        //para1.innerText = `${time}`;
       }
-
-      let para = document.querySelector("#comment_out");
-      para.innerText = `${comment}`;
-
-      //let para1 = document.querySelector("#time_out");
-      //para1.innerText = `${time}`;
+      console.log('エラーだお');
     }
 
     window.onload = async (event) => {
-      console.log('こんですー');
+      console.log('こんですー今から処理しますー');
       //const response = await fetch("/reset_obj"); // GET
       let group = 1;
       reload(group);
