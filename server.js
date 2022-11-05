@@ -41,8 +41,8 @@ serve(async (req) => {
       .from('calendar')
       .select()
       .eq('group', group)
-      .lt('date_start', '[2022-11-01 00:00)')
-      .gt('date_start', '[2022-12-01 00:00)');
+      .lt('date_start', 2022-11-01)
+      .gt('date_start', 2022-12-01);
 
     if (obj.error == null) {
       let data = obj.data[0].created_at + '||';
