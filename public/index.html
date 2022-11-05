@@ -16,7 +16,7 @@
   <nobr id = "time_out"></nobr>
 
   <script type="module">
-    async function reload(group){
+    async function reload(group, time){
       const response = await fetch("/code_info2", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -32,11 +32,12 @@
           let date_start = data2[1];
           let date_end = data2[2];
           let comment = data2[3];
-          console.log('------------------------------------');
-          console.log(created_at);
-          console.log(date_start);
-          console.log(date_end);
-          console.log(comment);
+          if (date_start.includes(`${time}`))
+            console.log('------------------------------------');
+            console.log(created_at);
+            console.log(date_start);
+            console.log(date_end);
+            console.log(comment);
         }
 
         let para = document.querySelector("#comment_out");
@@ -52,7 +53,10 @@
       console.log('こんですー今から処理しますー');
       //const response = await fetch("/reset_obj"); // GET
       let group = 1;
-      reload(group);
+      let year = 2022;
+      let month = 11;
+      let time = `${year}-${month}`
+      reload(group, time);
     }
 
     document.querySelector("#submit").onclick = async (event) => {
