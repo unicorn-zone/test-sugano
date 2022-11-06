@@ -55,8 +55,8 @@
     }
 
     document.querySelector("#submit").onclick = async (event) => {
-      let comment = document.querySelector("#comment").value;
-      if (comment.include('||')){
+      const comment = document.querySelector("#comment").value;
+      if (comment.includes('||') || comment.includes('@@')){
         alert("no");
       }else{
         const response = await fetch("/code_info", {
