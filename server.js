@@ -12,6 +12,41 @@ serve(async (req) => {
   const pathname = new URL(req.url).pathname;
   console.log(pathname);
 
+  if (req.method === "POST" && pathname === "/register") {
+    const requestJson = await req.json();
+    let sp = await supabase // userテーブルへ問い合わせ
+      .from('user')
+      .insert({ username: `${requestJson.username}`, password: `${requestJson.password}` });
+    
+    if (sp.error == null) {
+      return new Response('registerエラーなし');
+    }else{
+      return new Response('registerエラーあり！！！！');
+    }
+  }
+
+  if (req.method === "POST" && pathname === "/login") {
+    const requestJson = await req.json();
+    let sp = await supabase // userテーブルへ問い合わせ
+      .from('user')
+      .select()
+      .eq( 'username', requestJson.username )
+      .eq( 'password', requestJson.password );
+    
+    if (sp.error == null) {
+      return new Response('loginエラーなし');
+    }else{
+      return new Response('loginエラーあり！！！！');
+    }
+  }
+
+
+
+
+
+
+
+
   //　コーディネート初期化
   if (req.method === "GET" && pathname === "/reset_obj") {
     main_obj = await supabase.from('calendar').select().rangeGt('sche_start', '[2022-11-01 00:00, 2022-11-01 00:00)');
@@ -20,13 +55,13 @@ serve(async (req) => {
   // コーディネートの投稿
   if (req.method === "POST" && pathname === "/code_info") {
     const requestJson = await req.json();
-    obj = await supabase
+    let sp = await supabase
       .from('calendar')
       .insert({ group: `${requestJson.group}`, sche_start: `${requestJson.sche_start}`, sche_end: `${requestJson.sche_end}`, comment: `${requestJson.comment}` }); // calendarへデータ挿入
-    if (obj.error == null) {
+    if (sp.error == null) {
       return new Response("finished");
     } else {
-      return new Response(obj.error.message);
+      return new Response(sp.error.message);
     }
   }
 
@@ -40,19 +75,19 @@ serve(async (req) => {
     const requestJson = await req.json();
     let group = requestJson.group;
     let time = requestJson.time;
-    obj = await supabase
+    let sp = await supabase // calendarテーブルへ問い合わせ
       .from('calendar')
       .select()
       .eq('group', group);
     
     let data = '';
-    if (obj.error == null) {
-      for (let i = 0; i < obj.data.length; i++) {
-        if (obj.data[i].sche_start.includes(`${time}`)){
-          data = data + obj.data[i].created_at + '||';
-          data = data + obj.data[i].sche_start + '||';
-          data = data + obj.data[i].sche_end + '||';
-          data = data + obj.data[i].comment + '@@';
+    if (sp.error == null) {
+      for (let i = 0; i < sp.data.length; i++) {
+        if (sp.data[i].sche_start.includes(`${time}`)){
+          data = data + sp.data[i].created_at + '||';
+          data = data + sp.data[i].sche_start + '||';
+          data = data + sp.data[i].sche_end + '||';
+          data = data + sp.data[i].comment + '@@';
         }
       }
       return new Response(data);

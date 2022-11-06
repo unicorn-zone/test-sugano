@@ -7,12 +7,16 @@
 </head>
 
 <body>
-  <h1>ログイン</h1>
-  <input id="username" type="text" />
-  <input id="password" type="text" />
-  <button id="login">ログイン</button>
+  <h1>カレンダー</h1>
+  <input id="comment_ip" type="text" />
+  <input id="sche_start_ip" type="datetime-local" />
+  <input id="sche_end_ip" type="datetime-local" />
+  <button id="submit">送信</button>
+  <button id="show">表示</button>
+  <nobr id = "comment_op"></nobr>
+  <nobr id = "time_op"></nobr>
 
-  <script type="module" src="md5.js">
+  <script type="module">
     async function reload(group, time){
       const response = await fetch("/code_info2", {
         method: "POST",
@@ -52,15 +56,22 @@
     }
 
     document.querySelector("#submit").onclick = async (event) => {
-      const username = document.querySelector("#username").value;
-      const password = CybozuLabs.MD5.calc(document.querySelector("#password").value); // MD5でパスワードをハッシュ値に変換
-      const response = await fetch("/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
-      });
-      let result = await response.text();
-      alert(result);
+      const group = 1;
+      const sche_start = document.querySelector("#sche_start_ip").value;
+      const sche_end = document.querySelector("#sche_end_ip").value;
+      const comment = document.querySelector("#comment_ip").value;
+      
+      if (comment.includes('||') || comment.includes('@@')){
+        alert("no");
+      }else{
+        const response = await fetch("/code_info", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ group, sche_start, sche_end, comment })
+        });
+        let result = await response.text();
+        alert(result);
+      }
     }
   </script>
 
