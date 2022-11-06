@@ -11,6 +11,7 @@
   <input id="username" type="text" />
   <input id="password" type="text" />
   <button id="login">ログイン</button>
+  <button id="register_page" class="click" >アカウントをお持ちでない方はこちら</button>
 
   <script type="module" src="md5.js">
     async function reload(group, time){
@@ -51,7 +52,7 @@
       reload(group, time);
     }
 
-    document.querySelector("#submit").onclick = async (event) => {
+    document.querySelector("#login").onclick = async (event) => {
       const username = document.querySelector("#username").value;
       const password = CybozuLabs.MD5.calc(document.querySelector("#password").value); // MD5でパスワードをハッシュ値に変換
       const response = await fetch("/login", {
@@ -61,6 +62,10 @@
       });
       let result = await response.text();
       alert(result);
+    }
+
+    document.querySelector("#register_page").onclick = async (event) => {
+      location.href = 'register.html';
     }
   </script>
 
