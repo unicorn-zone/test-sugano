@@ -23,7 +23,7 @@
         body: JSON.stringify({ group, time })
       });
       let result = await response.text();
-      if (result != 'error'){
+      if (result != 'Database Error'){
         let data = result.split('@@');
         
         for (let i = 0; i < data.length-1; i++) {
