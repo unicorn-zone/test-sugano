@@ -34,11 +34,7 @@ serve(async (req) => {
       .eq( 'password', requestJson.password );
     
     if (sp.error == null) {
-      if (sp.data[0].password !== null){
-        return new Response(sp.data[0].password);
-      }else{
-        return new Response(sp.data[0].password);
-      }
+      return new Response('ログイン成功');
     }else{
       return new Response('loginエラーあり！！！！');
     }
