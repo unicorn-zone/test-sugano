@@ -18,7 +18,7 @@
     window.onload = async (event) => {
     }
 
-    document.querySelector("#submit").onclick = async (event) => {
+    document.querySelector("#register").onclick = async (event) => {
       const username = document.querySelector("#username").value;
       const password = document.querySelector("#password").value; // MD5でパスワードをハッシュ値に変換
       const response = await fetch("/register", {
