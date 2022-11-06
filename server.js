@@ -42,7 +42,7 @@ serve(async (req) => {
       .from('calendar')
       .select()
       .eq('group', group)
-      .adws();
+      .eq('groupaaa', group);
     
     let data = '';
     if (obj.error == null) {
