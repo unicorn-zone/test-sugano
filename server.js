@@ -20,7 +20,9 @@ serve(async (req) => {
   // コーディネートの投稿
   if (req.method === "POST" && pathname === "/code_info") {
     const requestJson = await req.json();
-    obj = await supabase.from('calendar').insert(requestJson); // calendarへデータ挿入
+    obj = await supabase
+      .from('calendar')
+      .insert({ date_start: `${requestJson.date_start}`, date_end: `${requestJson.date_end}`, comment: `${requestJson.comment}` }); // calendarへデータ挿入
     if (obj.error == null) {
       return new Response("finished");
     } else {

@@ -10,8 +10,8 @@
   <nobr id = "now"></nobr>
   <h1>見出しです!!!!!!!!</h1>
   <input id="comment_ip" type="text" />
-  <input type="datetime-local" name="user_datetime_local" id="date_start_ip" />
-  <input type="datetime-local" name="user_datetime_local" id="date_end_ip" />
+  <input id="date_start_ip" type="datetime-local" />
+  <input id="date_end_ip" type="datetime-local" />
   <button id="submit">送信</button>
   <button id="show">表示</button>
   <nobr id = "comment_op"></nobr>
@@ -57,24 +57,20 @@
     }
 
     document.querySelector("#submit").onclick = async (event) => {
-      const comment = document.querySelector("#comment_ip").value;
       const date_start = document.querySelector("#date_start_ip").value;
       const date_end = document.querySelector("#date_end_ip").value;
-      console.log(date_start);
+      const comment = document.querySelector("#comment_ip").value;
       
-      
-      if (1 == 2){
-        if (comment.includes('||') || comment.includes('@@')){
-          alert("no");
-        }else{
-          const response = await fetch("/code_info", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ comment })
-          });
-          let result = await response.text();
-          alert(result);
-        }
+      if (comment.includes('||') || comment.includes('@@')){
+        alert("no");
+      }else{
+        const response = await fetch("/code_info", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ date_start, date_end, comment })
+        });
+        let result = await response.text();
+        alert(result);
       }
     }
   </script>
