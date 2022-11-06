@@ -3,8 +3,8 @@ import { serveDir } from "https://deno.land/std@0.151.0/http/file_server.ts";
 import { CSV } from "https://js.sabae.cc/CSV.js";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@1.34.0'
 
-import id_lat_lon_jsonData from "./public/id_lat_lon.json" assert { type: "json" };
-import wbgt_people from "./public/wbgt_people.json" assert { type: "json" };
+//import id_lat_lon_jsonData from "./public/id_lat_lon.json" assert { type: "json" };
+//import wbgt_people from "./public/wbgt_people.json" assert { type: "json" };
 
 
 let pre_ids = [[11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24], [31], [33], [34], [32], [35], [36], [40], [41], [42], [43], [45], [44], [46], [54], [55], [56], [57], [49], [48], [52], [50], [51], [53], [60], [61], [62], [63], [64], [65], [69], [68], [66], [67], [81], [71], [72], [73], [74], [82], [85], [84], [86], [83], [87], [88], [91, 92, 93, 94]];
