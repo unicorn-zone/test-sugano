@@ -19,11 +19,7 @@ serve(async (req) => {
       .insert({ username: `${requestJson.username}`, password: `${requestJson.password}` });
     
     if (sp.error == null) {
-      if (sp.data[0].password != null){
-        return new Response('ログインしました');
-      }else{
-        return new Response('どっか間違ってるぞ');
-      }
+      return new Response('registerエラーなし');
     }else{
       return new Response('registerエラーあり！！！！');
     }
@@ -38,7 +34,11 @@ serve(async (req) => {
       .eq( 'password', requestJson.password );
     
     if (sp.error == null) {
-      return new Response('loginエラーなし');
+      if (sp.data[0].password != null){
+        return new Response('ログインしました');
+      }else{
+        return new Response('どっか間違ってるぞ');
+      }
     }else{
       return new Response('loginエラーあり！！！！');
     }
