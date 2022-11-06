@@ -14,42 +14,8 @@
 
   <script type="text/javascript" src="md5.js"></script>
   <script type="text/javascript">
-    async function reload(group, time){
-      const response = await fetch("/code_info2", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ group, time })
-      });
-      let result = await response.text();
-      if (result != 'Database Error'){
-        let data = result.split('@@');
-        
-        for (let i = 0; i < data.length-1; i++) {
-          let data2 = data[i].split('||');
-          let created_at = data2[0];
-          let sche_start = data2[1];
-          let sche_end = data2[2];
-          let comment = data2[3];
-
-          comment_op.textContent = comment;
-
-          console.log('------------------------------------');
-          console.log(created_at);
-          console.log(sche_start);
-          console.log(sche_end);
-          console.log(comment);
-        }
-      }
-    }
 
     window.onload = async (event) => {
-      console.log('こんですー今から処理しますー');
-      //const response = await fetch("/reset_obj"); // GET
-      let group = 1;
-      let year = 2022;
-      let month = 11;
-      let time = `${year}-${month}`
-      reload(group, time);
     }
 
     document.querySelector("#submit").onclick = async (event) => {
