@@ -14,7 +14,7 @@ serve(async (req) => {
 
   //　コーディネート初期化
   if (req.method === "GET" && pathname === "/reset_obj") {
-    main_obj = await supabase.from('calendar').select().rangeGt('date_start', '[2022-11-01 00:00, 2022-11-01 00:00)');
+    main_obj = await supabase.from('calendar').select().rangeGt('sche_start', '[2022-11-01 00:00, 2022-11-01 00:00)');
   }
 
   // コーディネートの投稿
@@ -22,7 +22,7 @@ serve(async (req) => {
     const requestJson = await req.json();
     obj = await supabase
       .from('calendar')
-      .insert({ group: `${requestJson.group}`, date_start: `${requestJson.date_start}`, date_end: `${requestJson.date_end}`, comment: `${requestJson.comment}` }); // calendarへデータ挿入
+      .insert({ group: `${requestJson.group}`, sche_start: `${requestJson.sche_start}`, sche_end: `${requestJson.sche_end}`, comment: `${requestJson.comment}` }); // calendarへデータ挿入
     if (obj.error == null) {
       return new Response("finished");
     } else {
@@ -32,7 +32,7 @@ serve(async (req) => {
 
   // データベース更新確認
   async function base_select() {
-    main_obj = await supabase.from('calendar').select().rangeGt('date_start', '[2022-11-01 00:00, 2022-11-01 00:00)');
+    main_obj = await supabase.from('calendar').select().rangeGt('sche_start', '[2022-11-01 00:00, 2022-11-01 00:00)');
     return main_obj;
   };
 
@@ -48,10 +48,10 @@ serve(async (req) => {
     let data = '';
     if (obj.error == null) {
       for (let i = 0; i < obj.data.length; i++) {
-        if (obj.data[i].date_start.includes(`${time}`)){
+        if (obj.data[i].sche_start.includes(`${time}`)){
           data = data + obj.data[i].created_at + '||';
-          data = data + obj.data[i].date_start + '||';
-          data = data + obj.data[i].date_end + '||';
+          data = data + obj.data[i].sche_start + '||';
+          data = data + obj.data[i].sche_end + '||';
           data = data + obj.data[i].comment + '@@';
         }
       }
