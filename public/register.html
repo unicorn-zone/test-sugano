@@ -29,7 +29,9 @@
       let result = await response.text();
       alert(result);
 
-      location.href = 'login.html';
+      if (result == 'register successfully'){
+        location.href = 'login.html';
+      }
     }
   </script>
 
