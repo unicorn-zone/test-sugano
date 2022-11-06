@@ -41,12 +41,6 @@
           console.log(date_end);
           console.log(comment);
         }
-
-        //let para = document.querySelector("#comment_out");
-        //para.innerText = `${comment}`;
-
-        //let para1 = document.querySelector("#time_out");
-        //para1.innerText = `${date_start}`;
       }
     }
 
@@ -62,14 +56,13 @@
 
     document.querySelector("#submit").onclick = async (event) => {
       const comment = document.querySelector("#comment").value;
-      
-      alert("データベースに送信します");
-
-      const response = await fetch("/code_info", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ comment })
-      });
+      if (!comment.include('||') && !comment.include('@@')){
+        const response = await fetch("/code_info", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ comment })
+        });
+      }
 
       alert("データベースに送ったよ");
     }
