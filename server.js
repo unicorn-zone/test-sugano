@@ -1,5 +1,4 @@
 import { serve } from "https://deno.land/std@0.151.0/http/server.ts";
-import { serveDir } from "https://deno.land/std@0.151.0/http/file_server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@1.34.0';
 
 let url = 'https://ekzwclcfheomwmnteywk.supabase.co';
@@ -131,13 +130,6 @@ serve(async (req) => {
 
   return new Response(await Deno.readTextFile("./public/index.html"), {
     headers: { "Content-Type": "text/html; charset=utf-8" },
-  });
-
-  return serveDir(req, {
-    fsRoot: "public",
-    urlRoot: "",
-    showDirListing: true,
-    enableCors: true,
   });
 
 });
