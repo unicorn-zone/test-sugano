@@ -57,6 +57,7 @@
     }
 
     document.querySelector("#submit").onclick = async (event) => {
+      const group = 1;
       const date_start = document.querySelector("#date_start_ip").value;
       const date_end = document.querySelector("#date_end_ip").value;
       const comment = document.querySelector("#comment_ip").value;
@@ -67,7 +68,7 @@
         const response = await fetch("/code_info", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ date_start, date_end, comment })
+          body: JSON.stringify({ group, date_start, date_end, comment })
         });
         let result = await response.text();
         alert(result);
