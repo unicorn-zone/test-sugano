@@ -12,6 +12,7 @@
   <input id="username" type="text" />
   <input id="password" type="text" />
   <button id="register">登録</button>
+  <button id="login_page" class="click" >アカウントをすでにお持ちの方はこちら</button>
 
   <script src="jquery.js"></script>
   <script src="jquery.md5.js"></script>
@@ -36,6 +37,10 @@
       if (result == 'register successfully'){
         location.href = 'login.html';
       }
+    }
+
+    document.querySelector("#login_page").onclick = async (event) => {
+      location.href = 'login.html';
     }
   </script>
 
