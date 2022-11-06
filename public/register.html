@@ -12,15 +12,14 @@
   <input id="password" type="text" />
   <button id="register">登録</button>
 
-  <script type="text/javascript" src="md5.js"></script>
-  <script type="text/javascript">
+  <script type="module">
 
     window.onload = async (event) => {
     }
 
     document.querySelector("#submit").onclick = async (event) => {
       const username = document.querySelector("#username").value;
-      const password = CybozuLabs.MD5.calc(document.querySelector("#password").value); // MD5でパスワードをハッシュ値に変換
+      const password = document.querySelector("#password").value; // MD5でパスワードをハッシュ値に変換
       const response = await fetch("/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
