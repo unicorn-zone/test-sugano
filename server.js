@@ -35,9 +35,9 @@ serve(async (req) => {
     
     if (sp.error == null) {
       if (sp.data[0].password !== null){
-        return new Response(sp.data[0]);
+        return new Response(sp.data[0].password);
       }else{
-        return new Response(sp.data[0]);
+        return new Response(sp.data[0].password);
       }
     }else{
       return new Response('loginエラーあり！！！！');
