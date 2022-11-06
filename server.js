@@ -43,7 +43,7 @@ serve(async (req) => {
       .select()
       .eq('group', group);
     
-    let data = null;
+    let data = '';
     if (obj.error == null) {
       for (let i = 0; i < obj.data.length; i++) {
         if (obj.data[i].date_start.includes(`${time}`)){
