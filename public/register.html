@@ -13,6 +13,8 @@
   <input id="password" type="text" />
   <button id="register">登録</button>
 
+  <script src="jquery.js"></script>
+  <script src="jquery.md5.js"></script>
   <script type="module">
 
     window.onload = async (event) => {
@@ -20,7 +22,9 @@
 
     document.querySelector("#register").onclick = async (event) => {
       const username = document.querySelector("#username").value;
-      const password = document.querySelector("#password").value; // MD5でパスワードをハッシュ値に変換
+      const original_pass = document.querySelector("#password").value;
+      const password = $.md5(original_pass); // MD5でパスワードをハッシュ値に変換
+
       const response = await fetch("/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
