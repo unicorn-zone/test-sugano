@@ -56,15 +56,15 @@
 
     document.querySelector("#submit").onclick = async (event) => {
       const comment = document.querySelector("#comment").value;
-      if (!comment.include('||') && !comment.include('@@')){
+      if (comment.include('||') || comment.include('@@')){
+        alert("no");
+      }else{
         const response = await fetch("/code_info", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ comment })
         });
         alert("データベースに送ったよ");
-      }else{
-        alert("||と@@入れんじゃねえ");
       }
     }
   </script>
