@@ -29,11 +29,12 @@ serve(async (req) => {
     const requestJson = await req.json();
     let sp = await supabase // userテーブルへ問い合わせ
       .from('user')
-      .select()
+      .select('*', { count: 'exact' })
       .eq( 'username', requestJson.username )
       .eq( 'password', requestJson.password );
     
     if (sp.error == null) {
+      console.log(sp.data.count);
       return new Response('ログイン成功');
     }else{
       return new Response('loginエラーあり！！！！');
