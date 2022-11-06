@@ -9,11 +9,13 @@
 <body>
   <nobr id = "now"></nobr>
   <h1>見出しです!!!!!!!!</h1>
-  <input id="comment" type="text" />
+  <input id="comment_ip" type="text" />
+  <input type="datetime-local" name="user_datetime_local" id="date_start_ip" />
+  <input type="datetime-local" name="user_datetime_local" id="date_end_ip" />
   <button id="submit">送信</button>
   <button id="show">表示</button>
-  <nobr id = "comment_out"></nobr>
-  <nobr id = "time_out"></nobr>
+  <nobr id = "comment_op"></nobr>
+  <nobr id = "time_op"></nobr>
 
   <script type="module">
     async function reload(group, time){
@@ -33,7 +35,7 @@
           let date_end = data2[2];
           let comment = data2[3];
 
-          comment_out.textContent = comment;
+          comment_op.textContent = comment;
 
           console.log('------------------------------------');
           console.log(created_at);
@@ -55,16 +57,24 @@
     }
 
     document.querySelector("#submit").onclick = async (event) => {
-      const comment = document.querySelector("#comment").value;
-      if (comment.includes('||') || comment.includes('@@')){
-        alert("no");
-      }else{
-        const response = await fetch("/code_info", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ comment })
-        });
-        alert("データベースに送ったよ");
+      const comment = document.querySelector("#comment_ip").value;
+      const date_start = document.querySelector("#date_start_ip").value;
+      const date_end = document.querySelector("#date_end_ip").value;
+      alert(date_start);
+      
+      
+      if (1 == 2){
+        if (comment.includes('||') || comment.includes('@@')){
+          alert("no");
+        }else{
+          const response = await fetch("/code_info", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ comment })
+          });
+          let result = await response.text();
+          alert(result);
+        }
       }
     }
   </script>
