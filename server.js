@@ -25,13 +25,13 @@ serve(async (req) => {
         .insert({ username: `${requestJson.username}`, password: `${requestJson.password}` });
       
       if (sp1.error == null) {
-        return new Response('register successfully');
+        return new Response('register successfully'); // 新規登録成功と返す
       }else{
-        return new Response('register error: 不明なエラー');
+        return new Response('internal error'); // 内部エラーと返す
       }
       
     }else{
-      return new Response('register error: ユーザー名被り');
+      return new Response('same username already registered'); // ユーザー名被りエラーと返す
     }
   }
 
@@ -45,12 +45,12 @@ serve(async (req) => {
     
     if (sp.error == null) {
       if (sp.data.length == 1){
-        return new Response('ログイン成功');
+        return new Response('login successfully'); // ログイン成功と返す
       }else{
-        return new Response('ログイン失敗');
+        return new Response('login failed'); // ログイン失敗と返す
       }
     }else{
-      return new Response('loginエラーあり！！！！');
+      return new Response('internal error'); // 内部エラーと返す
     }
   }
 
