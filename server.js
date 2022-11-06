@@ -37,21 +37,21 @@ serve(async (req) => {
   if (req.method === "POST" && pathname === "/code_info2") {
     const requestJson = await req.json();
     let group = requestJson.group;
+    let time = requestJson.time;
     obj = await supabase
       .from('calendar')
       .select()
       .eq('group', group);
-
+    
+    let data;
     if (obj.error == null) {
-      let data = obj.data[0].created_at + '||';
-      data = data + obj.data[0].date_start + '||';
-      data = data + obj.data[0].date_end + '||';
-      data = data + obj.data[0].comment + '@@';
-      for (let i = 1; i < obj.data.length; i++) {
-        data = data + obj.data[i].created_at + '||';
-        data = data + obj.data[i].date_start + '||';
-        data = data + obj.data[i].date_end + '||';
-        data = data + obj.data[i].comment + '@@';
+      for (let i = 0; i < obj.data.length; i++) {
+        if (obj.data[i].date_start.includes(`${time}`)){
+          data = data + obj.data[i].created_at + '||';
+          data = data + obj.data[i].date_start + '||';
+          data = data + obj.data[i].date_end + '||';
+          data = data + obj.data[i].comment + '@@';
+        }
       }
       return new Response(data);
     } else {
