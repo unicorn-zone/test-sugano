@@ -16,12 +16,22 @@ serve(async (req) => {
     const requestJson = await req.json();
     let sp = await supabase // userテーブルへ問い合わせ
       .from('user')
-      .insert({ username: `${requestJson.username}`, password: `${requestJson.password}` });
-    
-    if (sp.error == null) {
-      return new Response('registerエラーなし');
+      .select()
+      .eq( 'username', requestJson.username );
+
+    if (sp.data.length == 0){
+      let sp1 = await supabase // userテーブルへ問い合わせ
+        .from('user')
+        .insert({ username: `${requestJson.username}`, password: `${requestJson.password}` });
+      
+      if (sp1.error == null) {
+        return new Response('register successfully');
+      }else{
+        return new Response('register error: 不明なエラー');
+      }
+      
     }else{
-      return new Response('registerエラーあり！！！！');
+      return new Response('register error: ユーザー名被り');
     }
   }
 
