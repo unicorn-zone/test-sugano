@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <title>ホーム / ☀えんてんかいひ☀</title>
+</head>
+
+<body>
+
+  <header>
+      <h1>☀えんてんかいひ☀</h1>
+
+    <button class="click" id="home">ホーム</button>
+    <button class="click" id="wear">コーディネート</button>
+    <!--服装共有用SNS(?)に移動-->
+    <button class="click" id="map">クールマップ</button>
+    <!--涼が取れる施設を表示するマップに移動-->
+  </header>
+  
+  <div>
+    <p>
+      <button id="wbgt">現在地の暑さ指数は？</button>
+    <div id="wbgt_val"></div>
+    </p>
+
+    <p>
+      <nobr id="wbgt_message"></nobr>
+    </p>
+
+    <p>
+      <div id="heatstroke"></div>
+    </p>
+
+    <p>
+      <a href="https://www.wbgt.env.go.jp/wbgt_data.php"> 環境省 熱中症予防情報サイト</a>
+      <a href="https://tenki.jp/">tenki.jp/ </a>
+    </p>
+
+    <p>出典：環境省電子提供サービス，総務省消防庁熱中症情報</p>
+
+    <footer>
+      <p><font color="blue"> #うちですごそう</font></p>
+      <nobr><a href="https://ichigojam.net/" target="_blank"><img src="\map_icon\IchigoJam.png" alt="おうえんバナーです。" border:0></a></nobr>
+    </footer>
+
+    <script type="module">
+      window.onload = async (event) => {
+        const tips = await (await fetch("/tips")).text();//サーバーからtipsをもらってくる
+        alert(tips);//お役立ち情報を表示
+      };
+
+      document.querySelector("#wear").onclick = async (event) => {
+        location.href = 'coordination.html';//コーディネートのページに移動
+      }
+
+      document.querySelector("#map").onclick = async (event) => {//マップボタンが押されたときの挙動
+        location.href = 'map.html';//マップのページに移動
+      }
+
+      document.querySelector("#wbgt").onclick = async (event) => {
+        //位置情報を取得
+        navigator.geolocation.getCurrentPosition(success, error);
+
+        //位置情報の取得に成功したら
+        async function success(position) {
+          var lat = position.coords.latitude; //緯度
+          var lon = position.coords.longitude; //経度
+
+          //位置情報をPOSTでサーバーに送信
+          const response = await fetch("/loc", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({lat, lon})
+          });
+
+          const values = await response.text(); //暑さ指数をサーバー側から取得
+          const wbgt = values.split(',')[0];
+          const people = values.split(',')[1];
+          const para = document.querySelector("#wbgt_val");
+          const message = document.querySelector("#wbgt_message");//メッセージの変数
+          const deadman = document.querySelector("#heatstroke");//搬送者数
+          //暑さ指数に応じて色とかフォントサイズを変えたい
+
+          if(Number(wbgt) >= 31){
+            document.getElementById("wbgt_val").style.fontSize = "40px" ;
+            document.getElementById("wbgt_val").style.color = "black" ;
+            document.getElementById("wbgt_val").style.backgroundColor = "red" ;
+            document.getElementById("wbgt_val").style.textAlign = "center" ;
+            document.getElementById("wbgt_val").style.border = "none" ;
+            document.getElementById("wbgt_message").style.color = "red" ;
+            message.innerText = "非常に危険なので外出や屋外での運動は避けましょう!"
+          }else if(Number(wbgt) >= 28){
+            document.getElementById("wbgt_val").style.fontSize = "40px" ;
+            document.getElementById("wbgt_val").style.color = "black" ;
+            document.getElementById("wbgt_val").style.backgroundColor = "orange" ;
+            document.getElementById("wbgt_val").style.textAlign = "center" ;
+            document.getElementById("wbgt_val").style.border = "none" ;
+            message.innerText = "10分おきには水分、塩分を取り休憩することを心がけましょう"
+          }else if(Number(wbgt) >= 25){
+            document.getElementById("wbgt_val").style.fontSize = "40px" ;
+            document.getElementById("wbgt_val").style.color = "black" ;
+            document.getElementById("wbgt_val").style.backgroundColor = "yellow" ;
+            document.getElementById("wbgt_val").style.textAlign = "center" ;
+            document.getElementById("wbgt_val").style.border = "none" ;
+            message.innerText = "のどが渇いたら水分を取ることを心がけましょう"
+          }else {
+            document.getElementById("wbgt_val").style.fontSize = "40px" ;
+            document.getElementById("wbgt_val").style.color = "black" ;
+            document.getElementById("wbgt_val").style.backgroundColor = "aqua" ;
+            document.getElementById("wbgt_val").style.textAlign = "center" ;
+            document.getElementById("wbgt_val").style.border = "none" ;
+            message.innerText = "危険性は低いですが十分注意しましょう"
+          }
+          
+          document.getElementById("heatstroke").style.fontSize = "40px" ;
+          document.getElementById("heatstroke").style.color = "white" ;
+          document.getElementById("heatstroke").style.backgroundColor = "purple" ;
+          document.getElementById("heatstroke").style.textAlign = "center" ;
+          document.getElementById("heatstroke").style.border = "none" ;
+          
+          para.innerText = "あなたのまわりの暑さ指数: "+`${wbgt}`; 
+          deadman.innerText = "あなたのまわりの搬送者数:" + `${people}`;
+        }
+
+        //位置情報の取得に失敗したら
+        function error() {
+          alert("位置情報が取得できませんでした");
+        }
+      }
+    </script>
+  </div>
+</body>
+
+</html>

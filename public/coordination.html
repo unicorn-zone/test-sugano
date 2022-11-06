@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>コーディネート / ☀えんてんかいひ☀</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+
+  <header>  <h1>☀えんてんかいひ☀</h1>
+    <button class="click" id="home">ホーム</button>
+    <button class="click" id="wear">コーディネート</button>
+    <!--服装共有用SNS(?)に移動-->
+    <button class="click" id="map">クールマップ</button>
+    <!--涼が取れる施設を表示するマップに移動-->
+  </header>
+
+  <div>
+    <h2 style="display:inline;">コーディネート</h2>
+  <div>
+  <div>
+    <div>
+    
+    <p>
+      <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px;">
+    <p id = "title_out"></p><!--タイトル表示-->
+    <div class = "nametime">
+    <nobr id = "name_out"></nobr><!--おなまえ-->
+    <nobr id = "time_out"></nobr><!--時刻-->
+    </div>
+    <p id = "comment_out"></p><!--本文表示-->
+    <img id="file-show" height="400"><!--画像表示-->
+    </div>
+
+    <button class="click2" id="back">←前の投稿</button><button class="click2" id="next">次の投稿→</button>
+    <div><button id="delete">現在の投稿を削除</button></div>
+
+    <div>ハンドルネーム</div>
+    <div><input id = "name" type="text" value = "名無しさん"></div>
+
+    <div>タイトル</div><!--タイトル入力フォーム-->
+    <div><input id="title" type="text" /></div>
+
+    <div>画像</div><!--画像フォーム-->
+    <form action="coordination.html" method="post" enctype="multipart/form-data">
+      <input id="file-sample" type="file" required accept="image/*"><br>
+      <img id="file-preview">
+
+    <div>コメント</div><!--本文入力フォーム-->
+    <div><textarea id="comment" type="text" style="width: 250px; height: 100px;" ></textarea></div>
+    <div><button id="tweet">投稿</button></div>
+    <div>連投の原因になるので投稿ボタンは連打しないでください。</div>
+
+    <h1 id="welcomeMessage"></h1>
+
+      <script type="module">
+        function str_date_conv_jp(st_time){
+          let tmp1 = st_time.split('-');
+          let tmp2 = tmp1[2].split('T');
+          let tmp3 = tmp2[1].split(':');
+          let year = tmp1[0];
+          let month = tmp1[1];
+          let day = tmp2[0];
+          let hour = tmp3[0];
+          let min = tmp3[1];
+          let sec = tmp3[2].split('+')[0];
+          var time = new Date(year,month,day,hour,min,sec);
+          time.setHours(time.getHours() + 9);
+          // return time.toLocaleString().slice(0,-3);
+          let jp_time = String(time.getFullYear()) + '/' + String(time.getMonth()) + '/' + String(time.getDate()) + ' ' + String(time.getHours()) + ':' + String(time.getMinutes());
+          return jp_time;
+        }
+
+        async function reload(id){
+          const response = await fetch("/code_info2", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id })
+          });
+          let result = await response.text();
+          let data = result.split('@');
+          let name = data[0];
+          let title = data[1];
+          let comment = data[2];
+          let photo_data = data[3];
+          let time = data[4];
+          time = str_date_conv_jp(time);
+
+
+          // ハンドルネームを表示
+          let para = document.querySelector("#name_out");
+          para.innerText = `${name}`;
+
+          //タイトルを表示
+          let para1 = document.querySelector("#title_out");
+          para1.innerText = `${title}`;
+
+          //コメントを表示
+          let para2 = document.querySelector("#comment_out");
+          para2.innerText = `${comment}`;
+          
+          //時刻を表示
+          let para3 = document.querySelector("#time_out");
+          para3.innerText = `${time}`;
+
+          // 写真を表示
+          var img = document.getElementById('file-show');
+          img.src = photo_data;
+        }
+
+        window.onload = async (event) => {
+          const response = await fetch("/reset_obj");
+          const response_id = await fetch("/code_info");
+          let max_id = await response_id.text();
+          max_id = Number(max_id); // 1~idまでが時系列
+          reload(max_id);
+        };
+
+        document.querySelector("#home").onclick = async (event) => {//homeボタンが押されたときの挙動
+          location.href = 'index.html';//homeのページに移動
+        }
+
+        document.querySelector("#map").onclick = async (event) => {//マップボタンが押されたときの挙動
+          location.href = 'map.html';//マップのページに移動
+        }
+        document.querySelector("#tweet").onclick = async (event) => {//投稿ボタンが押されたときの挙動
+          //location.href = 'coordinationupload.html';
+        }
+
+
+        let photo_data = "";
+        // 画像の読み込み,文字コードに変換
+        document.getElementById('file-sample').addEventListener('change', function (e) {
+            // 1枚だけ表示する
+            var file = e.target.files[0];
+            // ファイルリーダー作成
+            var fileReader = new FileReader();
+            fileReader.onload = function() {
+                // Data URIを取得
+                photo_data = this.result; // base64文字列
+                // img要素に表示
+                var img = document.getElementById('file-preview');
+                img.height="400";
+                img.src = photo_data;
+            }
+            // ファイルをData URIとして読み込む
+            fileReader.readAsDataURL(file);
+        });
+
+        let id = 0;
+        // 投稿ボタン
+        document.querySelector("#tweet").onclick = async (event) => {
+         // location.href = "coordinationupload.html";
+          let name = document.querySelector("#name").value;
+          let title = document.querySelector("#title").value;
+          let comment = document.querySelector("#comment").value;
+          const response = await fetch("/code_info", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ title, comment, photo_data, name })
+          });
+          let result = await response.text();
+        };
+
+        // showボタンでデータベースの指定したidのtitle,comment,photo_dataを取得
+        document.querySelector("#next").onclick = async (event) => {
+          const response_id = await fetch("/code_info");
+          let max_id = await response_id.text();
+          max_id = Number(max_id); // 1~idまでが時系列
+          if (id==max_id){
+            id=0;
+          }else{
+            id++;
+          }
+
+          reload(id);
+        };
+
+        document.querySelector("#back").onclick = async (event) => {
+          const response_id = await fetch("/code_info");
+          let max_id = await response_id.text();
+          max_id = Number(max_id); // 1~idまでが時系列
+          if (id==0){
+            id=max_id;
+          }else{
+            id--;
+          }
+
+          reload(id);
+        };
+
+        document.querySelector("#delete").onclick = async (event) => {
+          // idの投稿情報を取得
+          const response = await fetch("/code_info_del", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id })
+          });
+          let next_id = await response.text();
+          id = Number(next_id);
+
+          reload(id);
+        };
+
+      </script>
+
+      <style>
+        h2{
+          color:plum;
+        }
+        p#title_out{
+          color:green;
+          font-size: 30px;
+          text-align:left;
+          margin-top: 0;
+        }
+        p#comment_out{
+          text-align:left;
+        }
+        div.nametime{
+          text-align:left;
+        }
+ 
+
+        img#file-show{
+          text-align:left;
+        }
+        
+      </style>
+
+
+  </div>
+</body>
+
+</html>
