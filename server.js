@@ -41,7 +41,8 @@ serve(async (req) => {
     obj = await supabase
       .from('calendar')
       .select()
-      .eq('group', group);
+      .eq('group', group)
+      .adws();
     
     let data = '';
     if (obj.error == null) {
@@ -55,7 +56,7 @@ serve(async (req) => {
       }
       return new Response(data);
     } else {
-      return new Response('error');
+      return new Response(obj.error.message);
     }
   }
 
