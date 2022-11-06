@@ -7,7 +7,17 @@
 </head>
 
 <body>
-  <h1>register.htmlとかlogin.htmlとかあるのに、そのページに飛べないの何とかしたい</h1>
+  <h1>index</h1>
+
+  <script type="module">
+
+    window.onload = async (event) => {
+      document.querySelector("#login_page").onclick = async (event) => {
+        location.href = 'login.html';
+      }
+    }
+    
+  </script>
 </body>
 
 </html>
