@@ -84,10 +84,10 @@ serve(async (req) => {
     if (sp.error == null) {
       for (let i = 0; i < sp.data.length; i++) {
         if (sp.data[i].sche_start.includes(`${time}`)){
-          data = data + sp.data[i].created_at + '||';
-          data = data + sp.data[i].sche_start + '||';
-          data = data + sp.data[i].sche_end + '||';
-          data = data + sp.data[i].comment + '@@';
+          data += sp.data[i].created_at + '||';
+          data += sp.data[i].sche_start + '||';
+          data += sp.data[i].sche_end + '||';
+          data += sp.data[i].comment + '@@';
         }
       }
       return new Response(data);
