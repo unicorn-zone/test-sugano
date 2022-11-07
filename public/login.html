@@ -33,7 +33,7 @@
       });
       let result = await response.text();
 
-      if (response.status / 100 == 2) { // ログイン成功した場合
+      if (response.text >= 1) { // ログイン成功した場合
         alert('ログイン成功 ' + result);
         location.href = 'calendar.html';
 
