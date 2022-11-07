@@ -32,7 +32,7 @@
         body: JSON.stringify({ username, password })
       });
       let result = await response.text();
-      alert(response.status);
+      alert(response.status + response.statusText);
 
       if (response.status / 100 == 2) { // ログイン成功した場合
         alert('ログイン成功 ' + result);
