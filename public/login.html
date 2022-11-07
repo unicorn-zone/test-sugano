@@ -32,7 +32,22 @@
         body: JSON.stringify({ username, password })
       });
       let result = await response.text();
-      alert(result);
+      
+      if (response.status / 100 == 2) { // ログイン成功した場合
+        alert('ログイン成功 ' + result);
+        location.href = 'calendar.html';
+
+      }else{ // ログイン失敗（またはエラーが発生）した場合
+        if (response.status == 591) {
+          alert('ユーザー名、またはパスワードが違います');
+        }else if (response.status == 592) {
+          alert('データベースで技術的な問題が発生しているため、運営に連絡してください');
+        }else if (response.status == 593) {
+          alert('サーバーで構文エラーが発生しているため、運営に連絡してください');
+        }else{
+          alert('予期せぬエラーが発生したため、運営に連絡してください');
+        }
+      }
     }
 
     document.querySelector("#register_page").onclick = async (event) => {
