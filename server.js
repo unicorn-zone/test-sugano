@@ -45,7 +45,7 @@ serve(async (req) => {
     
     if (sp.error == null) { // エラーがないとき
       if (sp.data.length == 1){ // データベースに、対応するアカウントが１つある場合
-        return new Response(sp.data[0].group, { status: 201 }); // groupカラムと、ログイン成功を返す
+        return new Response(sp.data[0].group, { status: 200 }); // groupカラムと、ログイン成功を返す
 
       }else if (sp.data.length < 1){ // データベースに、対応するアカウントがない場合
         return new Response({ status: 591 }); // ログイン失敗（エラー）と返す
