@@ -43,10 +43,6 @@ serve(async (req) => {
       .eq( 'username', requestJson.username )
       .eq( 'password', requestJson.password );
     
-    console.log('aaaaaaaaaaaaaaaaaaaaaaa');
-    return new Response({ status: 999, statusText: 'TEST RES' });
-    console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbb');
-    
     if (sp.error == null) { // エラーがないとき
       if (sp.data.length == 1){ // データベースに、対応するアカウントが１つある場合
         return new Response(sp.data[0].group, { status: 200 }); // groupカラムと、ログイン成功を返す
