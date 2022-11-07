@@ -42,6 +42,7 @@ serve(async (req) => {
       .select()
       .eq( 'username', requestJson.username )
       .eq( 'password', requestJson.password );
+    return new Response({ status: 999 });
     
     if (sp.error == null) { // エラーがないとき
       if (sp.data.length == 1){ // データベースに、対応するアカウントが１つある場合
