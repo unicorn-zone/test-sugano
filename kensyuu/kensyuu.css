@@ -1,0 +1,15 @@
+body {
+  background: skyblue;
+}
+
+midasi {
+  position: relative;
+  top: 40px;
+  left: 30px;
+}
+
+honbun {
+  position: relative;
+  top: 30px;
+  left: 80px;
+}

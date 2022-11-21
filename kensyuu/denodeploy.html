@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="kensyuu.css">
+</head>
+
+<body>
+  <h1>作ったプログラムを試行する方法</h1>
+  <p>
+    アカウントを作って1週間以上経ったことだし、そろそろできるはず。ということで解説するよ。
+  </p>
+  <p>
+    ※すでに「2022-deno-kdgroup」のフォークを作成済みである前提で説明しています。<br>
+    　フォークの作成方法は、申し訳ございませんがご自身でggrks。それでも分からない場合は浦川まで。
+  </p>
+
+  <midasi> <!-- midasiは自作タグです。少し右にずらす処理をkensyuu.cssに書いてあります。 -->
+    <h2>1. Deno Deployにアクセス・ログイン</h2>
+  </midasi>
+
+  <honbun> <!-- honbunは自作タグです。midasiよりもっと右にずらす処理をkensyuu.cssに書いてあります。 -->
+    <p>
+      まず、 <a href= "https://deno.com/deploy" >https://deno.com/deploy</a> に移動し、<br>
+      右上の「Sign up」ボタンを押す。
+    </p>
+    <img src="images/denodeploy_1.png" height="400">
+
+    <p><br>
+      GitHubの「2022-deno-kdgroup」のコントリビューター（メンバー）であるアカウント<br>
+      （難しく言ったが、この前作ったアカウントのことね）で、ログインする。
+    </p>
+    <img src="images/denodeploy_2.png" height="400">
+  </honbun>
+
+
+  <midasi>
+    <h2>2. Deno Deployと自分のリポジトリを連携させる</h2>
+  </midasi>
+
+  <honbun>
+    <p>
+      右上の青いボタン「+ New Project」をクリックする。
+    </p>
+    <img src="images/denodeploy_3.png" height="400">
+
+    <p><br>
+      ここは少しややこしいので、どうぞゆっくりコーヒーでも飲みながら。
+    </p>
+    <p>
+      ①　「Select Github repository」をクリックし、自分の名前を選ぶ。<br>
+      　　※自分の名前がない方は<a href= "denodeploy1.html" >こちら</a><br>
+      <br>
+      ②　フォークしたリポジトリを選ぶ。<br>
+      <br>
+      ③　「Select production branch」をクリックする。「main」を選ぶ。<br>
+      <br>
+      ④　「main」を選ぶ。<br>
+      <br>
+      ⑤　「Automatic」を選ぶ。<br>
+      <br>
+      ⑥　「server.js」を選ぶ。<br>
+      <br>
+      「Link」ボタンをクリックする。
+    </p>
+    <img src="images/denodeploy_4.gif" height="400">
+
+    <p><br>
+      すると、変な文字がダーーッっと出ますが、その状態から５秒ほど待ちます...
+    </p>
+
+    <p><br>
+      ｷﾀ――(ﾟ∀ﾟ)――!! この画面が出てくれば全ては完了です！<br>
+      右上の青いボタン「View」をクリックすると、あなたのプログラムの試行結果が閲覧可能です。
+    </p>
+    <img src="images/denodeploy_5.png" height="400">
+  </honbun>
+
+
+  <midasi>
+    <h2>3. さいごに</h2>
+  </midasi>
+
+  <honbun>
+    <p>
+      さっそくプログラムをバリバリ書いていきたいところだが、その前にGithub Desktopの左上の<br>
+      「Current repository」で、フォークしたリポジトリが選択されているのを確認し、<br>
+      「Open in Visual Studio Code」をクリックして、<b><u>その時開いたウィンドウ</u></b>で編集してね！！<br>
+      これだけは絶対に気を付けよう！
+    </p>
+    <p>
+      このページでF12を押し、ソースコードを見てみましょう。比較的簡単なタグしか使用していないので、<br>
+      ぜひ参考にしてください。
+    </p>
+  </honbun>
+
+  
+
+  <script type="module">
+
+    // ここでJavaScriptを書くよ
+
+    window.onload = async (event) => {
+      // このhtmlが開かれた時に実行する処理...
+    }
+
+  </script>
+</body>
+
+</html>
