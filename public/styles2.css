@@ -1,5 +1,5 @@
 h1{
-   
+   font-family: "Yu Mincho";
 }
 
 
@@ -15,6 +15,13 @@ th{
     text-align: center;
     font-family:  "Yu Mincho";
 }
+tr *:first-child{
+    color: #ff69b4;
+}
+tr *:last-child{
+    color: #0ba9ea;
+}
+
 .bg_pattern {
     position: fixed;
     top: 0;
