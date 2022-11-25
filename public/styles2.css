@@ -1,6 +1,9 @@
 h1{
     background-color: #fffaf0;
 }
+body{
+    background: #fffaf0;
+}
 
 table{
     margin: 20px;
