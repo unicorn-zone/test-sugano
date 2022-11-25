@@ -1,15 +1,15 @@
 h1{
-    background-color: #ffffff;
+    background-color: #fffaf0;
 }
 
 table{
     margin: 20px;
-    
+
 }
 th{
     height: 60px;
     color: black;
-    background-color: #ffffff;
+    background-color: #fffaf0;
     font-size: 60px;
     text-align: center;
 }
