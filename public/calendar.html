@@ -68,8 +68,9 @@
   
 
   <script type="module">
-    days_op.textContent=days;
     days=1;
+    days_op.textContent=days;
+    
     async function reload(group, time){
       const response = await fetch("/code_info2", {
         method: "POST",
