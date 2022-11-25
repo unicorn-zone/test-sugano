@@ -2,12 +2,17 @@ h1{
     background-color: #ffffff;
 }
 
-table{
-    width:90%;
+td,th{
+    width:800px;
+    text-align: center;
+    font-size: 60px;
+    background-color: #ff99ff
+}
+th{
+    color: black;
+    background-color: #ff99ff;
+    font-size: 60px;
+    text-align: center;
 }
 
-#container{
-      width:1000px;
-      margin:0 auto;
-}
     
