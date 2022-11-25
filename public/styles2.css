@@ -2,6 +2,10 @@ h1{
     background-color: #ffffff;
 }
 
+table{
+    margin: 20px;
+    
+}
 th{
     height: 60px;
     color: black;
