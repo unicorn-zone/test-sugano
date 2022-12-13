@@ -22,6 +22,10 @@ tr *:last-child{
     color: #0ba9ea;
 }
 
+button{
+    margin-left: 10px;
+}
+
 
 .bg_pattern {
     position: fixed;
