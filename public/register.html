@@ -9,10 +9,19 @@
 
 <body>
   <h1>アカウント新規登録</h1>
-  <input id="username" type="text" />
-  <input id="password" type="text" />
-  <button id="register">登録</button>
-  <button id="login_page" class="click" >アカウントをすでにお持ちの方はこちら</button>
+
+
+
+  <div class="login">
+    <p><input id="username" type="username" placeholder="ユーザー名"></p>
+    <p><input id="password" type="password" placeholder="パスワード"></p>
+    <p><input id="color" type="color"></p>
+    <p><button id="register">新規作成</button></p>
+    <p><button id="login_page">アカウントをすでにお持ちの方はこちら</button></p>
+  </div>
+
+
+
 
   <script src="jquery.js"></script>
   <script src="jquery.md5.js"></script>
@@ -36,7 +45,7 @@
         let result = await response.text();
         alert(result);
 
-        if (result == 'register successfully'){
+        if (result == 0){
           location.href = 'login.html';
         }
 
