@@ -8,9 +8,41 @@
 
 <body>
   <h1 id = "month_op"></h1>
-  <input id="comment_ip" type="text" />
+
+  <div class="invite">
+    招待コード： <div id="invite_code_op"></div>
+    <button id="invite_toggle"></button>
+  </div>
+
+
+
+  <!-- モーダルエリアここから -->
+  <section id="modalArea_group" class="modalArea">
+    <div id="modalBg_group" class="modalBg"></div>
+    <div class="modalWrapper">
+      <div class="modalContents">
+        <h1 id="modalH_group">初期設定</h1>
+
+        <button id="create_calendar">新しくカレンダーを作る</button>
+
+        <p>―――――――――――――――――――</p>
+
+        <p>招待コードで参加する</p>
+        <input id="invite_code_ip" type="text" />
+        <button id="join_calendar">参加する</button>
+      </div>
+    </div>
+  </section>
+  <!-- モーダルエリアここまで -->
+
+  <!-- ↓body閉じタグ直前でjQueryを読み込む -->
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+  <input id="comment_ip" type="text" placeholder="予定の内容" />
   <input id="sche_start_ip" type="datetime-local" />
-  <input id="sche_end_ip" type="datetime-local" />
+  <!-- <input id="sche_end_ip" type="datetime-local" /> -->
   <button id="submit">送信</button>
   <button id="update">更新</button>
   <button id="back"><前の月</button>
@@ -20,7 +52,7 @@
 
   <table class="calendar">
     <tr>
-      <th>日</th> <th>月</th> <th>火</th> <th>水</th> <th>木</th> <th>金</th> <th>土</th>
+      <th class="sunday">日</th> <th>月</th> <th>火</th> <th>水</th> <th>木</th> <th>金</th> <th class="saturday">土</th>
     </tr>
     <tr>
       <td>
@@ -47,10 +79,10 @@
             <th><div id = "d2" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n2_1"></div><div id = "c2_1"></div></th>
+            <th id = "th2_1"><div id = "n2_1"></div><div id = "c2_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n2_2"></div><div id = "c2_2"></div></th>
+            <th id = "th2_2"><div id = "n2_2"></div><div id = "c2_2"></div></th>
           </tr>
         </table>
 
@@ -64,10 +96,10 @@
             <th><div id = "d3" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n3_1"></div><div id = "c3_1"></div></th>
+            <th id = "th3_1"><div id = "n3_1"></div><div id = "c3_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n3_2"></div><div id = "c3_2"></div></th>
+            <th id = "th3_2"><div id = "n3_2"></div><div id = "c3_2"></div></th>
           </tr>
         </table>
 
@@ -81,10 +113,10 @@
             <th><div id = "d4" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n4_1"></div><div id = "c4_1"></div></th>
+            <th id = "th4_1"><div id = "n4_1"></div><div id = "c4_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n4_2"></div><div id = "c4_2"></div></th>
+            <th id = "th4_2"><div id = "n4_2"></div><div id = "c4_2"></div></th>
           </tr>
         </table>
 
@@ -98,10 +130,10 @@
             <th><div id = "d5" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n5_1"></div><div id = "c5_1"></div></th>
+            <th id = "th5_1"><div id = "n5_1"></div><div id = "c5_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n5_2"></div><div id = "c5_2"></div></th>
+            <th id = "th5_2"><div id = "n5_2"></div><div id = "c5_2"></div></th>
           </tr>
         </table>
 
@@ -115,10 +147,10 @@
             <th><div id = "d6" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n6_1"></div><div id = "c6_1"></div></th>
+            <th id = "th6_1"><div id = "n6_1"></div><div id = "c6_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n6_2"></div><div id = "c6_2"></div></th>
+            <th id = "th6_2"><div id = "n6_2"></div><div id = "c6_2"></div></th>
           </tr>
         </table>
 
@@ -132,10 +164,10 @@
             <th><div id = "d7" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n7_1"></div><div id = "c7_1"></div></th>
+            <th id = "th7_1"><div id = "n7_1"></div><div id = "c7_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n7_2"></div><div id = "c7_2"></div></th>
+            <th id = "th7_2"><div id = "n7_2"></div><div id = "c7_2"></div></th>
           </tr>
         </table>
 
@@ -153,10 +185,10 @@
             <th><div id = "d8" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n8_1"></div><div id = "c8_1"></div></th>
+            <th id = "th8_1"><div id = "n8_1"></div><div id = "c8_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n8_2"></div><div id = "c8_2"></div></th>
+            <th id = "th8_2"><div id = "n8_2"></div><div id = "c8_2"></div></th>
           </tr>
         </table>
 
@@ -170,10 +202,10 @@
             <th><div id = "d9" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n9_1"></div><div id = "c9_1"></div></th>
+            <th id = "th9_1"><div id = "n9_1"></div><div id = "c9_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n9_2"></div><div id = "c9_2"></div></th>
+            <th id = "th9_2"><div id = "n9_2"></div><div id = "c9_2"></div></th>
           </tr>
         </table>
 
@@ -187,10 +219,10 @@
             <th><div id = "d10" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n10_1"></div><div id = "c10_1"></div></th>
+            <th id = "th10_1"><div id = "n10_1"></div><div id = "c10_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n10_2"></div><div id = "c10_2"></div></th>
+            <th id = "th10_2"><div id = "n10_2"></div><div id = "c10_2"></div></th>
           </tr>
         </table>
 
@@ -204,10 +236,10 @@
             <th><div id = "d11" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n11_1"></div><div id = "c11_1"></div></th>
+            <th id = "th11_1"><div id = "n11_1"></div><div id = "c11_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n11_2"></div><div id = "c11_2"></div></th>
+            <th id = "th11_2"><div id = "n11_2"></div><div id = "c11_2"></div></th>
           </tr>
         </table>
 
@@ -221,10 +253,10 @@
             <th><div id = "d12" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n12_1"></div><div id = "c12_1"></div></th>
+            <th id = "th12_1"><div id = "n12_1"></div><div id = "c12_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n12_2"></div><div id = "c12_2"></div></th>
+            <th id = "th12_2"><div id = "n12_2"></div><div id = "c12_2"></div></th>
           </tr>
         </table>
 
@@ -238,10 +270,10 @@
             <th><div id = "d13" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n13_1"></div><div id = "c13_1"></div></th>
+            <th id = "th13_1"><div id = "n13_1"></div><div id = "c13_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n13_2"></div><div id = "c13_2"></div></th>
+            <th id = "th13_2"><div id = "n13_2"></div><div id = "c13_2"></div></th>
           </tr>
         </table>
 
@@ -255,10 +287,10 @@
             <th><div id = "d14" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n14_1"></div><div id = "c14_1"></div></th>
+            <th id = "th14_1"><div id = "n14_1"></div><div id = "c14_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n14_2"></div><div id = "c14_2"></div></th>
+            <th id = "th14_2"><div id = "n14_2"></div><div id = "c14_2"></div></th>
           </tr>
         </table>
 
@@ -276,10 +308,10 @@
             <th><div id = "d15" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n15_1"></div><div id = "c15_1"></div></th>
+            <th id = "th15_1"><div id = "n15_1"></div><div id = "c15_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n15_2"></div><div id = "c15_2"></div></th>
+            <th id = "th15_2"><div id = "n15_2"></div><div id = "c15_2"></div></th>
           </tr>
         </table>
 
@@ -293,10 +325,10 @@
             <th><div id = "d16" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n16_1"></div><div id = "c16_1"></div></th>
+            <th id = "th16_1"><div id = "n16_1"></div><div id = "c16_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n16_2"></div><div id = "c16_2"></div></th>
+            <th id = "th16_2"><div id = "n16_2"></div><div id = "c16_2"></div></th>
           </tr>
         </table>
 
@@ -310,10 +342,10 @@
             <th><div id = "d17" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n17_1"></div><div id = "c17_1"></div></th>
+            <th id = "th17_1"><div id = "n17_1"></div><div id = "c17_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n17_2"></div><div id = "c17_2"></div></th>
+            <th id = "th17_2"><div id = "n17_2"></div><div id = "c17_2"></div></th>
           </tr>
         </table>
 
@@ -327,10 +359,10 @@
             <th><div id = "d18" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n18_1"></div><div id = "c18_1"></div></th>
+            <th id = "th18_1"><div id = "n18_1"></div><div id = "c18_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n18_2"></div><div id = "c18_2"></div></th>
+            <th id = "th18_2"><div id = "n18_2"></div><div id = "c18_2"></div></th>
           </tr>
         </table>
 
@@ -344,10 +376,10 @@
             <th><div id = "d19" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n19_1"></div><div id = "c19_1"></div></th>
+            <th id = "th19_1"><div id = "n19_1"></div><div id = "c19_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n19_2"></div><div id = "c19_2"></div></th>
+            <th id = "th19_2"><div id = "n19_2"></div><div id = "c19_2"></div></th>
           </tr>
         </table>
 
@@ -361,10 +393,10 @@
             <th><div id = "d20" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n20_1"></div><div id = "c20_1"></div></th>
+            <th id = "th20_1"><div id = "n20_1"></div><div id = "c20_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n20_2"></div><div id = "c20_2"></div></th>
+            <th id = "th20_2"><div id = "n20_2"></div><div id = "c20_2"></div></th>
           </tr>
         </table>
 
@@ -378,10 +410,10 @@
             <th><div id = "d21" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n21_1"></div><div id = "c21_1"></div></th>
+            <th id = "th21_1"><div id = "n21_1"></div><div id = "c21_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n21_2"></div><div id = "c21_2"></div></th>
+            <th id = "th21_2"><div id = "n21_2"></div><div id = "c21_2"></div></th>
           </tr>
         </table>
 
@@ -397,10 +429,10 @@
             <th><div id = "d22" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n22_1"></div><div id = "c22_1"></div></th>
+            <th id = "th22_1"><div id = "n22_1"></div><div id = "c22_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n22_2"></div><div id = "c22_2"></div></th>
+            <th id = "th22_2"><div id = "n22_2"></div><div id = "c22_2"></div></th>
           </tr>
         </table>
 
@@ -414,10 +446,10 @@
             <th><div id = "d23" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n23_1"></div><div id = "c23_1"></div></th>
+            <th id = "th23_1"><div id = "n23_1"></div><div id = "c23_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n23_2"></div><div id = "c23_2"></div></th>
+            <th id = "th23_2"><div id = "n23_2"></div><div id = "c23_2"></div></th>
           </tr>
         </table>
 
@@ -429,6 +461,7 @@
         <table class="day">
           <tr>
             <th>
+              
               <div id = "d24" class = "daynum"></div>
 
               <!-- モーダルエリアここから -->
@@ -456,10 +489,10 @@
             </th>
           </tr>
           <tr>
-            <th><div id = "n24_1"></div><div id = "c24_1"></div></th>
+            <th id = "th24_1"><div id = "n24_1"></div><div id = "c24_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n24_2"></div><div id = "c24_2"></div></th>
+            <th id = "th24_2"><div id = "n24_2"></div><div id = "c24_2"></div></th>
           </tr>
         </table>
 
@@ -474,31 +507,35 @@
               
               <div id = "d25" class = "daynum"></div>
 
+              <!-- モーダルエリアここから -->
               <section id="modalArea25" class="modalArea">
                 <div id="modalBg25" class="modalBg"></div>
                 <div class="modalWrapper">
                   <div class="modalContents">
                     <h1 id="modalH25"></h1>
-                    <button id="delete25_1" type="button">削除</button> <nobr id="modalP25_1"></nobr><br>
-                    <button id="delete25_2" type="button">削除</button> <nobr id="modalP25_2"></nobr><br>
-                    <button id="delete25_3" type="button">削除</button> <nobr id="modalP25_3"></nobr><br>
-                    <button id="delete25_4" type="button">削除</button> <nobr id="modalP25_4"></nobr><br>
-                    <button id="delete25_5" type="button">削除</button> <nobr id="modalP25_5"></nobr>
+                    <nobr id="delete25_1_temp"><button id="delete25_1" type="button" >削除</button></nobr> <nobr id="modalP25_1"></nobr><br>
+                    <nobr id="delete25_2_temp"><button id="delete25_2" type="button" >削除</button></nobr> <nobr id="modalP25_2"></nobr><br>
+                    <nobr id="delete25_3_temp"><button id="delete25_3" type="button" >削除</button></nobr> <nobr id="modalP25_3"></nobr><br>
+                    <nobr id="delete25_4_temp"><button id="delete25_4" type="button" >削除</button></nobr> <nobr id="modalP25_4"></nobr><br>
+                    <nobr id="delete25_5_temp"><button id="delete25_5" type="button" >削除</button></nobr> <nobr id="modalP25_5"></nobr>
                   </div>
                   <div id="closeModal25" class="closeModal">
                     ×
                   </div>
                 </div>
               </section>
+              <!-- モーダルエリアここまで -->
+
+              <!-- ↓body閉じタグ直前でjQueryを読み込む -->
               <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
             </th>
           </tr>
           <tr>
-            <th><div id = "n25_1"></div><div id = "c25_1"></div></th>
+            <th id = "th25_1"><div id = "n25_1"></div><div id = "c25_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n25_2"></div><div id = "c25_2"></div></th>
+            <th id = "th25_2"><div id = "n25_2"></div><div id = "c25_2"></div></th>
           </tr>
         </table>
 
@@ -513,31 +550,35 @@
               
               <div id = "d26" class = "daynum"></div>
 
+              <!-- モーダルエリアここから -->
               <section id="modalArea26" class="modalArea">
                 <div id="modalBg26" class="modalBg"></div>
                 <div class="modalWrapper">
                   <div class="modalContents">
                     <h1 id="modalH26"></h1>
-                    <button id="delete26_1" type="button">削除</button> <nobr id="modalP26_1"></nobr><br>
-                    <button id="delete26_2" type="button">削除</button> <nobr id="modalP26_2"></nobr><br>
-                    <button id="delete26_3" type="button">削除</button> <nobr id="modalP26_3"></nobr><br>
-                    <button id="delete26_4" type="button">削除</button> <nobr id="modalP26_4"></nobr><br>
-                    <button id="delete26_5" type="button">削除</button> <nobr id="modalP26_5"></nobr>
+                    <nobr id="delete26_1_temp"><button id="delete26_1" type="button" >削除</button></nobr> <nobr id="modalP26_1"></nobr><br>
+                    <nobr id="delete26_2_temp"><button id="delete26_2" type="button" >削除</button></nobr> <nobr id="modalP26_2"></nobr><br>
+                    <nobr id="delete26_3_temp"><button id="delete26_3" type="button" >削除</button></nobr> <nobr id="modalP26_3"></nobr><br>
+                    <nobr id="delete26_4_temp"><button id="delete26_4" type="button" >削除</button></nobr> <nobr id="modalP26_4"></nobr><br>
+                    <nobr id="delete26_5_temp"><button id="delete26_5" type="button" >削除</button></nobr> <nobr id="modalP26_5"></nobr>
                   </div>
                   <div id="closeModal26" class="closeModal">
                     ×
                   </div>
                 </div>
               </section>
+              <!-- モーダルエリアここまで -->
+
+              <!-- ↓body閉じタグ直前でjQueryを読み込む -->
               <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             
             </th>
           </tr>
           <tr>
-            <th><div id = "n26_1"></div><div id = "c26_1"></div></th>
+            <th id = "th26_1"><div id = "n26_1"></div><div id = "c26_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n26_2"></div><div id = "c26_2"></div></th>
+            <th id = "th26_2"><div id = "n26_2"></div><div id = "c26_2"></div></th>
           </tr>
         </table>
 
@@ -551,10 +592,10 @@
             <th><div id = "d27" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n27_1"></div><div id = "c27_1"></div></th>
+            <th id = "th27_1"><div id = "n27_1"></div><div id = "c27_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n27_2"></div><div id = "c27_2"></div></th>
+            <th id = "th27_2"><div id = "n27_2"></div><div id = "c27_2"></div></th>
           </tr>
         </table>
 
@@ -568,10 +609,10 @@
             <th><div id = "d28" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n28_1"></div><div id = "c28_1"></div></th>
+            <th id = "th28_1"><div id = "n28_1"></div><div id = "c28_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n28_2"></div><div id = "c28_2"></div></th>
+            <th id = "th28_2"><div id = "n28_2"></div><div id = "c28_2"></div></th>
           </tr>
         </table>
 
@@ -587,10 +628,10 @@
             <th><div id = "d29" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n29_1"></div><div id = "c29_1"></div></th>
+            <th id = "th29_1"><div id = "n29_1"></div><div id = "c29_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n29_2"></div><div id = "c29_2"></div></th>
+            <th id = "th29_2"><div id = "n29_2"></div><div id = "c29_2"></div></th>
           </tr>
         </table>
 
@@ -604,10 +645,10 @@
             <th><div id = "d30" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n30_1"></div><div id = "c30_1"></div></th>
+            <th id = "th30_1"><div id = "n30_1"></div><div id = "c30_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n30_2"></div><div id = "c30_2"></div></th>
+            <th id = "th30_2"><div id = "n30_2"></div><div id = "c30_2"></div></th>
           </tr>
         </table>
 
@@ -621,10 +662,10 @@
             <th><div id = "d31" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n31_1"></div><div id = "c31_1"></div></th>
+            <th id = "th31_1"><div id = "n31_1"></div><div id = "c31_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n31_2"></div><div id = "c31_2"></div></th>
+            <th id = "th31_2"><div id = "n31_2"></div><div id = "c31_2"></div></th>
           </tr>
         </table>
 
@@ -638,10 +679,10 @@
             <th><div id = "d32" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n32_1"></div><div id = "c32_1"></div></th>
+            <th id = "th32_1"><div id = "n32_1"></div><div id = "c32_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n32_2"></div><div id = "c32_2"></div></th>
+            <th id = "th32_2"><div id = "n32_2"></div><div id = "c32_2"></div></th>
           </tr>
         </table>
 
@@ -655,10 +696,10 @@
             <th><div id = "d33" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n33_1"></div><div id = "c33_1"></div></th>
+            <th id = "th33_1"><div id = "n33_1"></div><div id = "c33_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n33_2"></div><div id = "c33_2"></div></th>
+            <th id = "th33_2"><div id = "n33_2"></div><div id = "c33_2"></div></th>
           </tr>
         </table>
 
@@ -672,10 +713,10 @@
             <th><div id = "d34" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n34_1"></div><div id = "c34_1"></div></th>
+            <th id = "th34_1"><div id = "n34_1"></div><div id = "c34_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n34_2"></div><div id = "c34_2"></div></th>
+            <th id = "th34_2"><div id = "n34_2"></div><div id = "c34_2"></div></th>
           </tr>
         </table>
 
@@ -689,10 +730,10 @@
             <th><div id = "d35" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n35_1"></div><div id = "c35_1"></div></th>
+            <th id = "th35_1"><div id = "n35_1"></div><div id = "c35_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n35_2"></div><div id = "c35_2"></div></th>
+            <th id = "th35_2"><div id = "n35_2"></div><div id = "c35_2"></div></th>
           </tr>
         </table>
 
@@ -708,10 +749,10 @@
             <th><div id = "d36" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n36_1"></div><div id = "c36_1"></div></th>
+            <th id = "th36_1"><div id = "n36_1"></div><div id = "c36_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n36_2"></div><div id = "c36_2"></div></th>
+            <th id = "th36_2"><div id = "n36_2"></div><div id = "c36_2"></div></th>
           </tr>
         </table>
 
@@ -725,10 +766,10 @@
             <th><div id = "d37" class = "daynum"></div></th>
           </tr>
           <tr>
-            <th><div id = "n37_1"></div><div id = "c37_1"></div></th>
+            <th id = "th37_1"><div id = "n37_1"></div><div id = "c37_1"></div></th>
           </tr>
           <tr>
-            <th><div id = "n37_2"></div><div id = "c37_2"></div></th>
+            <th id = "th37_2"><div id = "n37_2"></div><div id = "c37_2"></div></th>
           </tr>
         </table>
 
@@ -737,219 +778,20 @@
     </tr>
   </table>
 
-  <h2>業務連絡：まだ、2023年1月24日と、そのマスと合う別の月の日しかポップアップは対応してないよ</h2>
-
   <script type="module">
     let ScheAmountPerDay = 5
 
     let group;
     let username;
+    let colorID;
     let d = new Date();
     let year = d.getFullYear();
     let month = d.getMonth() + 1;
     let month_str = ('00' + month).slice(-2);
     let time = `${year}-${month_str}`;
     let monthLen = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
-
-    function output_d(dates){
-      d1.textContent = `${dates[0]}`;
-      d2.textContent = `${dates[1]}`;
-      d3.textContent = `${dates[2]}`;
-      d4.textContent = `${dates[3]}`;
-      d5.textContent = `${dates[4]}`;
-      d6.textContent = `${dates[5]}`;
-      d7.textContent = `${dates[6]}`;
-      d8.textContent = `${dates[7]}`;
-      d9.textContent = `${dates[8]}`;
-      d10.textContent = `${dates[9]}`;
-      d11.textContent = `${dates[10]}`;
-      d12.textContent = `${dates[11]}`;
-      d13.textContent = `${dates[12]}`;
-      d14.textContent = `${dates[13]}`;
-      d15.textContent = `${dates[14]}`;
-      d16.textContent = `${dates[15]}`;
-      d17.textContent = `${dates[16]}`;
-      d18.textContent = `${dates[17]}`;
-      d19.textContent = `${dates[18]}`;
-      d20.textContent = `${dates[19]}`;
-      d21.textContent = `${dates[20]}`;
-      d22.textContent = `${dates[21]}`;
-      d23.textContent = `${dates[22]}`;
-      d24.textContent = `${dates[23]}`;
-      d25.textContent = `${dates[24]}`;
-      d26.textContent = `${dates[25]}`;
-      d27.textContent = `${dates[26]}`;
-      d28.textContent = `${dates[27]}`;
-      d29.textContent = `${dates[28]}`;
-      d30.textContent = `${dates[29]}`;
-      d31.textContent = `${dates[30]}`;
-      d32.textContent = `${dates[31]}`;
-      d33.textContent = `${dates[32]}`;
-      d34.textContent = `${dates[33]}`;
-      d35.textContent = `${dates[34]}`;
-      d36.textContent = `${dates[35]}`;
-      d37.textContent = `${dates[36]}`;
-    }
-
-    function output_n_1(users){
-      n1_1.textContent = `${users[0]}`;
-      n2_1.textContent = `${users[1]}`;
-      n3_1.textContent = `${users[2]}`;
-      n4_1.textContent = `${users[3]}`;
-      n5_1.textContent = `${users[4]}`;
-      n6_1.textContent = `${users[5]}`;
-      n7_1.textContent = `${users[6]}`;
-      n8_1.textContent = `${users[7]}`;
-      n9_1.textContent = `${users[8]}`;
-      n10_1.textContent = `${users[9]}`;
-      n11_1.textContent = `${users[10]}`;
-      n12_1.textContent = `${users[11]}`;
-      n13_1.textContent = `${users[12]}`;
-      n14_1.textContent = `${users[13]}`;
-      n15_1.textContent = `${users[14]}`;
-      n16_1.textContent = `${users[15]}`;
-      n17_1.textContent = `${users[16]}`;
-      n18_1.textContent = `${users[17]}`;
-      n19_1.textContent = `${users[18]}`;
-      n20_1.textContent = `${users[19]}`;
-      n21_1.textContent = `${users[20]}`;
-      n22_1.textContent = `${users[21]}`;
-      n23_1.textContent = `${users[22]}`;
-      n24_1.textContent = `${users[23]}`;
-      n25_1.textContent = `${users[24]}`;
-      n26_1.textContent = `${users[25]}`;
-      n27_1.textContent = `${users[26]}`;
-      n28_1.textContent = `${users[27]}`;
-      n29_1.textContent = `${users[28]}`;
-      n30_1.textContent = `${users[29]}`;
-      n31_1.textContent = `${users[30]}`;
-      n32_1.textContent = `${users[31]}`;
-      n33_1.textContent = `${users[32]}`;
-      n34_1.textContent = `${users[33]}`;
-      n35_1.textContent = `${users[34]}`;
-      n36_1.textContent = `${users[35]}`;
-      n37_1.textContent = `${users[36]}`;
-    }
-
-    function output_n_2(users){
-      n1_2.textContent = `${users[0]}`;
-      n2_2.textContent = `${users[1]}`;
-      n3_2.textContent = `${users[2]}`;
-      n4_2.textContent = `${users[3]}`;
-      n5_2.textContent = `${users[4]}`;
-      n6_2.textContent = `${users[5]}`;
-      n7_2.textContent = `${users[6]}`;
-      n8_2.textContent = `${users[7]}`;
-      n9_2.textContent = `${users[8]}`;
-      n10_2.textContent = `${users[9]}`;
-      n11_2.textContent = `${users[10]}`;
-      n12_2.textContent = `${users[11]}`;
-      n13_2.textContent = `${users[12]}`;
-      n14_2.textContent = `${users[13]}`;
-      n15_2.textContent = `${users[14]}`;
-      n16_2.textContent = `${users[15]}`;
-      n17_2.textContent = `${users[16]}`;
-      n18_2.textContent = `${users[17]}`;
-      n19_2.textContent = `${users[18]}`;
-      n20_2.textContent = `${users[19]}`;
-      n21_2.textContent = `${users[20]}`;
-      n22_2.textContent = `${users[21]}`;
-      n23_2.textContent = `${users[22]}`;
-      n24_2.textContent = `${users[23]}`;
-      n25_2.textContent = `${users[24]}`;
-      n26_2.textContent = `${users[25]}`;
-      n27_2.textContent = `${users[26]}`;
-      n28_2.textContent = `${users[27]}`;
-      n29_2.textContent = `${users[28]}`;
-      n30_2.textContent = `${users[29]}`;
-      n31_2.textContent = `${users[30]}`;
-      n32_2.textContent = `${users[31]}`;
-      n33_2.textContent = `${users[32]}`;
-      n34_2.textContent = `${users[33]}`;
-      n35_2.textContent = `${users[34]}`;
-      n36_2.textContent = `${users[35]}`;
-      n37_2.textContent = `${users[36]}`;
-    }
-    
-    function output_c_1(comments){
-      c1_1.textContent = `${comments[0]}`;
-      c2_1.textContent = `${comments[1]}`;
-      c3_1.textContent = `${comments[2]}`;
-      c4_1.textContent = `${comments[3]}`;
-      c5_1.textContent = `${comments[4]}`;
-      c6_1.textContent = `${comments[5]}`;
-      c7_1.textContent = `${comments[6]}`;
-      c8_1.textContent = `${comments[7]}`;
-      c9_1.textContent = `${comments[8]}`;
-      c10_1.textContent = `${comments[9]}`;
-      c11_1.textContent = `${comments[10]}`;
-      c12_1.textContent = `${comments[11]}`;
-      c13_1.textContent = `${comments[12]}`;
-      c14_1.textContent = `${comments[13]}`;
-      c15_1.textContent = `${comments[14]}`;
-      c16_1.textContent = `${comments[15]}`;
-      c17_1.textContent = `${comments[16]}`;
-      c18_1.textContent = `${comments[17]}`;
-      c19_1.textContent = `${comments[18]}`;
-      c20_1.textContent = `${comments[19]}`;
-      c21_1.textContent = `${comments[20]}`;
-      c22_1.textContent = `${comments[21]}`;
-      c23_1.textContent = `${comments[22]}`;
-      c24_1.textContent = `${comments[23]}`;
-      c25_1.textContent = `${comments[24]}`;
-      c26_1.textContent = `${comments[25]}`;
-      c27_1.textContent = `${comments[26]}`;
-      c28_1.textContent = `${comments[27]}`;
-      c29_1.textContent = `${comments[28]}`;
-      c30_1.textContent = `${comments[29]}`;
-      c31_1.textContent = `${comments[30]}`;
-      c32_1.textContent = `${comments[31]}`;
-      c33_1.textContent = `${comments[32]}`;
-      c34_1.textContent = `${comments[33]}`;
-      c35_1.textContent = `${comments[34]}`;
-      c36_1.textContent = `${comments[35]}`;
-      c37_1.textContent = `${comments[36]}`;
-    }
-
-    function output_c_2(comments){
-      c1_2.textContent = `${comments[0]}`;
-      c2_2.textContent = `${comments[1]}`;
-      c3_2.textContent = `${comments[2]}`;
-      c4_2.textContent = `${comments[3]}`;
-      c5_2.textContent = `${comments[4]}`;
-      c6_2.textContent = `${comments[5]}`;
-      c7_2.textContent = `${comments[6]}`;
-      c8_2.textContent = `${comments[7]}`;
-      c9_2.textContent = `${comments[8]}`;
-      c10_2.textContent = `${comments[9]}`;
-      c11_2.textContent = `${comments[10]}`;
-      c12_2.textContent = `${comments[11]}`;
-      c13_2.textContent = `${comments[12]}`;
-      c14_2.textContent = `${comments[13]}`;
-      c15_2.textContent = `${comments[14]}`;
-      c16_2.textContent = `${comments[15]}`;
-      c17_2.textContent = `${comments[16]}`;
-      c18_2.textContent = `${comments[17]}`;
-      c19_2.textContent = `${comments[18]}`;
-      c20_2.textContent = `${comments[19]}`;
-      c21_2.textContent = `${comments[20]}`;
-      c22_2.textContent = `${comments[21]}`;
-      c23_2.textContent = `${comments[22]}`;
-      c24_2.textContent = `${comments[23]}`;
-      c25_2.textContent = `${comments[24]}`;
-      c26_2.textContent = `${comments[25]}`;
-      c27_2.textContent = `${comments[26]}`;
-      c28_2.textContent = `${comments[27]}`;
-      c29_2.textContent = `${comments[28]}`;
-      c30_2.textContent = `${comments[29]}`;
-      c31_2.textContent = `${comments[30]}`;
-      c32_2.textContent = `${comments[31]}`;
-      c33_2.textContent = `${comments[32]}`;
-      c34_2.textContent = `${comments[33]}`;
-      c35_2.textContent = `${comments[34]}`;
-      c36_2.textContent = `${comments[35]}`;
-      c37_2.textContent = `${comments[36]}`;
-    }
+    const MAXSLOT = 37;
+    const DEF_COLOR = "#d4ff5f";
 
     // 指定した年、月を引数に入れると、月曜日からのズレを計算する。
     // 戻り値が0の場合は日曜日、1の場合は月曜日、6の場合は土曜日。
@@ -1005,7 +847,7 @@
         dates[dates.length] = i;
       }
 
-      if (dates.length != 37){
+      if (dates.length != MAXSLOT){
         i = 36;
         while (dates[i] === undefined){
           dates[i] = "";
@@ -1026,12 +868,19 @@
       let result = await response.text();
       if (result != 'Database Error'){
 
+        // 初期化
+        for (let i = 0; i < MAXSLOT; i++) {
+          document.getElementById(`n${i + 1}_1`).textContent = "";
+          document.getElementById(`n${i + 1}_2`).textContent = "";
+          document.getElementById(`th${i + 1}_1`).style.backgroundColor = DEF_COLOR;
+          document.getElementById(`th${i + 1}_2`).style.backgroundColor = DEF_COLOR;
+          document.getElementById(`c${i + 1}_1`).textContent = ""
+          document.getElementById(`c${i + 1}_2`).textContent = ""
+        }
+
         let zure = ZureCalendar(year, month);
         let dates = MannnenCalendar(zure);
-        let users_1 = new Array(37).fill(' ');
-        let users_2 = new Array(37).fill(' ');
-        let comments_1 = new Array(37).fill(' ');
-        let comments_2 = new Array(37).fill(' ');
+        let flags = new Array(MAXSLOT).fill(true);
 
         let data = result.split('@@');
         for (let i = 0; i < data.length-1; i++) {
@@ -1039,59 +888,132 @@
           let id = data2[0];
           let created_at = data2[1];
           let user = data2[2];
-          let sche_start = data2[3];
-          let sche_end = data2[4];
-          let comment = data2[5];
+          let color = data2[3];
+          let sche_start = data2[4];
+          let sche_end = data2[5];
+          let comment = data2[6];
 
           let temp = sche_start.split('T');
           let temp2 = temp[0].split('-');
-          let index = Number(temp2[2]) + zure - 1;
+          let slot = Number(temp2[2]) + zure;
 
-          if (comments_1[index] == ' '){
-            users_1[index] = user;
+          console.log(color);
 
-            comments_1[index] = comment;
-
+          if (flags[slot] == true){
+            document.getElementById(`n${slot}_1`).textContent = user
+            document.getElementById(`th${slot}_1`).style.backgroundColor = `${color}`
+            document.getElementById(`c${slot}_1`).textContent = comment
+            flags[slot] = false;
+            
           }else{
-            users_2[index] = users_1[index];
-            users_1[index] = user;
+            document.getElementById(`n${slot}_2`).textContent = document.getElementById(`n${slot}_1`).textContent
+            document.getElementById(`n${slot}_1`).textContent = user
+            
+            document.getElementById(`th${slot}_2`).style.backgroundColor = document.getElementById(`th${slot}_1`).style.backgroundColor
+            document.getElementById(`th${slot}_1`).style.backgroundColor = `${color}`
 
-            comments_2[index] = comments_1[index];
-            comments_1[index] = comment;
+            document.getElementById(`c${slot}_2`).textContent = document.getElementById(`c${slot}_1`).textContent
+            document.getElementById(`c${slot}_1`).textContent = comment
           }
-          //th1_1.style.backgroundColor = '#bb4444'
-          //th1_2.style.backgroundColor = '#bb4444'
         }
 
-        output_d(dates);
-        output_n_1(users_1);
-        output_n_2(users_2);
-        output_c_1(comments_1);
-        output_c_2(comments_2);
+        for (let i = 0; i < dates.length; i++) {
+          document.getElementById(`d${i + 1}`).textContent = dates[i]
+        }
+        
         month_op.textContent = year + "年 " + month + "月の予定";
+
+
+
+
+
+        const response_invite = await fetch("/invite_check", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ group })
+        });
+        let result_invite = await response_invite.text();
+
+        if (result_invite == -1){
+          invite_code_op.textContent = ""
+          invite_toggle.textContent = "有効にする"
+        }else{
+          invite_code_op.textContent = result_invite
+          invite_toggle.textContent = "リセット＆無効にする"
+        }
+
+        return true;
         
       }else{
-        alert("Database Error");
+        return false;
       }
     }
 
 
 
 
-    window.onload = async (event) => {
-      const response = await fetch("/login_remove", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ })
-      });
 
-      //const response = await fetch("/reset_obj"); // GET
+
+
+
+
+
+
+
+
+    window.onload = async (event) => {
+      const response = await fetch("/login"); // GET
       let result = await response.text();
       let data = result.split('@@');
       username = data[0];
       group = data[1];
+      colorID = data[2];
 
-      await reload();
+      let result_reload = await reload();
+      
+      if (result_reload == false){
+        $('#modalArea_group').fadeIn(200); // ポップアップを表示
+
+      }else{
+        await reload();
+      }
+    }
+
+    document.querySelector("#create_calendar").onclick = async (event) => {
+      const response_invite = await fetch("/create_calendar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username })
+      });
+      let result = await response_invite.text();
+
+      if (result == -1){
+        alert("新しくカレンダーを作れませんでした。運営に相談してください");
+
+      }else{
+        group = result;
+        await reload();
+        $('#modalArea_group').fadeOut(200);
+      }
+    }
+
+    document.querySelector("#join_calendar").onclick = async (event) => {
+      let invite_code = invite_code_ip.value;
+      const response_invite = await fetch("/join_calendar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, invite_code })
+      });
+      let result = await response_invite.text();
+      
+      if (result == -1){
+        alert("招待コードが無効です");
+
+      }else{
+        group = result;
+        await reload();
+        $('#modalArea_group').fadeOut(200);
+      }
     }
 
     document.querySelector("#update").onclick = async (event) => {
@@ -1122,37 +1044,83 @@
 
     document.querySelector("#submit").onclick = async (event) => {
       let sche_start = document.querySelector("#sche_start_ip").value;
-      let sche_end = document.querySelector("#sche_end_ip").value;
+      //let sche_end = document.querySelector("#sche_end_ip").value;
+      let sche_end = document.querySelector("#sche_start_ip").value;
       let comment = document.querySelector("#comment_ip").value;
 
-      if (sche_start == ""){
-        alert("日付を設定してください");
+      if (comment.includes('||') || comment.includes('@@')){
+        alert('使用できない記号が含まれています');
       }else{
 
-        if (sche_end == ""){
-          sche_end = sche_start;
-        }
+        if (sche_start == ""){
+          alert("日付を設定してください");
+        }else{
 
-        let temp = sche_start.split('T');
-        let temp2 = temp[0].split('-');
-        let day = time + "-" + temp2[2];
-        const response_check_day_amount = await fetch("/check_day_amount", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ group, day })
-        });
-        let amount = await response_check_day_amount.text();
-        result_op.textContent = amount;
+          if (sche_end == ""){
+            sche_end = sche_start;
+          }
 
-        if (Number(amount) < 5){
-          const response_send = await fetch("/send", {
+          let temp = sche_start.split('T');
+          let temp2 = temp[0].split('-');
+          let day = time + "-" + temp2[2];
+          const response_check_day_amount = await fetch("/check_day_amount", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ group, username, sche_start, sche_end, comment })
+            body: JSON.stringify({ group, day })
           });
-          let result = await response_send.text();
-          await reload();
+          let amount = await response_check_day_amount.text();
+          result_op.textContent = amount;
+
+          if (Number(amount) < 5){
+            const response_send = await fetch("/send", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ group, username, colorID, sche_start, sche_end, comment })
+            });
+            let result = await response_send.text();
+            await reload();
+
+          }
         }
+      }
+    }
+
+    document.querySelector("#invite_toggle").onclick = async (event) => {
+      if (invite_toggle.textContent == "有効にする"){
+        let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let rand_str = '';
+        for ( var i = 0; i < 8; i++ ) {
+          rand_str += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+
+        const response = await fetch("/invite_enable", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ rand_str, group })
+        });
+        let result = await response.text();
+        console.log(result);
+
+        if (result == 0){
+          invite_code_op.textContent = rand_str
+        }else{
+          invite_code_op.textContent = result
+        }
+
+        invite_toggle.textContent = "リセット＆無効にする"
+
+
+
+
+      }else{
+        const response = await fetch("/invite_disable", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ group })
+        });
+
+        invite_code_op.textContent = ""
+        invite_toggle.textContent = "有効にする"
       }
     }
 
@@ -1164,7 +1132,19 @@
 
 
 
-    async function popup(slot){
+
+
+
+
+
+
+
+
+
+
+
+
+    async function popup_day(slot){
       let date = document.getElementById("d" + slot).textContent;
       let day = time + "-" + ('00' + date).slice(-2);
       const response = await fetch("/download_day", {
@@ -1180,6 +1160,7 @@
       let ids = [];
       let created_ats = [];
       let users = [];
+      let colors = [];
       let sche_starts = [];
       let sche_start_hours = [];
       let sche_start_minutes = [];
@@ -1195,9 +1176,10 @@
         ids[ids.length] = data2[0];
         created_ats[created_ats.length] = data2[1];
         users[users.length] = data2[2];
-        sche_starts[sche_starts.length] = data2[3];
-        sche_ends[sche_ends.length] = data2[4];
-        comments[comments.length] = data2[5];
+        colors[users.length] = data2[3];
+        sche_starts[sche_starts.length] = data2[4];
+        sche_ends[sche_ends.length] = data2[5];
+        comments[comments.length] = data2[6];
 
         let temp = sche_starts[i].split('T');
         let temp2 = temp[1].split(':');
@@ -1296,21 +1278,21 @@
         });
         let result = await response.text();
         result_op.textContent = result;
-        await popup(slot);
+        await popup_day(slot);
         await reload();
       }
     }
 
 
     // 日付をクリックでpopup関数が起動
-    $(function () {      
-      $('#d24').click(async function(){ await popup(24); $('#modalArea24').fadeIn(200); });
+    $(function () {
+      $('#d24').click(async function(){ await popup_day(24); $('#modalArea24').fadeIn(200); });
       $('#closeModal24 , #modalBg24').click(function(){ $('#modalArea24').fadeOut(200); });
 
-      $('#d25').click(async function(){ await popup(25); $('#modalArea25').fadeIn(200); });
+      $('#d25').click(async function(){ await popup_day(25); $('#modalArea25').fadeIn(200); });
       $('#closeModal25 , #modalBg25').click(function(){ $('#modalArea25').fadeOut(200); });
       
-      $('#d26').click(async function(){ await popup(26); $('#modalArea26').fadeIn(200); });
+      $('#d26').click(async function(){ await popup_day(26); $('#modalArea26').fadeIn(200); });
       $('#closeModal26 , #modalBg26').click(function(){ $('#modalArea26').fadeOut(200); });
 
 

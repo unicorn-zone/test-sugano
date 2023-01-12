@@ -4,10 +4,14 @@
 <head>
   <title>ログイン</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles2.css">
 </head>
 
+<div class="bg_pattern Paper_v2"></div>
 <body>
+  <div class="header">
+    <h1>ShareCalendar</h1>
+  </div>
   <h1>ログイン</h1>
 
   <div class="login">
@@ -35,30 +39,18 @@
         body: JSON.stringify({ user, pass })
       });
       let result = await response.text();
-      let data = result.split('@@');
-      let username = data[0];
-      let group = data[1];
-
-      if (group >= 1) { // ログイン成功した場合
-
-        const response = await fetch("/login_add", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username, group })
-        });
-
+      console.log(result);
+      if (result == 0) { // ログイン成功した場合
         location.href = 'calendar.html';
 
-      }else{ // ログイン失敗（またはエラーが発生）した場合
-        if (group == -1) {
-          alert('ユーザー名、またはパスワードが違います');
-        }else if (group == -2) {
-          alert('データベースで技術的な問題が発生しているため、運営に連絡してください');
-        }else if (group == -3) {
-          alert('サーバーで構文エラーが発生しているため、運営に連絡してください');
-        }else{
-          alert('予期せぬエラーが発生したため、運営に連絡してください');
-        }
+      }else if (result == -1) { // ログイン失敗（またはエラーが発生）した場合
+        alert('ユーザー名、またはパスワードが違います');
+      }else if (result == -2) {
+        alert('データベースで技術的な問題が発生しているため、運営に連絡してください');
+      }else if (result == -3) {
+        alert('サーバーで構文エラーが発生しているため、運営に連絡してください');
+      }else{
+        alert('予期せぬエラーが発生したため、運営に連絡してください');
       }
     }
 
