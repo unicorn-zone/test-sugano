@@ -23,7 +23,7 @@
   /* http://xn--yck7ccu3lc7455coj5arwgo74a.jp/th.html */
   
   th.sunday {
-    background-color: #ff7777;
+    background-color: rbga(215,0,58,0.8);
   }
   th.saturday {
     background-color: #8277ff;
