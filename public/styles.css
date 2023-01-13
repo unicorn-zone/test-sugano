@@ -111,12 +111,16 @@
 }
 
 button#back{
-    
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
 }
 button#next{
-    
+    text-align: right;
+    padding-top: 5px;
+    padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
 }
