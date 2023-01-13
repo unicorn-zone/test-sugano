@@ -30,6 +30,7 @@
   .day {
     border-collapse: collapse;
     table-layout: fixed;
+    resize: vertical;
   }
   .day th {
     background-color: #d4ff5f;
