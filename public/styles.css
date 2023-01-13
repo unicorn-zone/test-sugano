@@ -1,7 +1,7 @@
 .calendar {
     border-collapse: collapse;
     table-layout: fixed;
-    margin-top: 90px;
+    margin-top: 5px;
   }
   .calendar th {
     border: 1px solid #000000;
