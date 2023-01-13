@@ -125,7 +125,10 @@ button#back{
     margin-top: 20px
 */
 display:inline-block;
+display: flex;
+justify-content: space-between;
 }
+
 button#next{
     padding-top: 5px;
     padding-bottom: 5px;
