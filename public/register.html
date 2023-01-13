@@ -4,7 +4,7 @@
 <head>
   <title>新規登録</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="register.css">
 </head>
 
 <body>
@@ -16,6 +16,7 @@
   <div class="login">
     <p><input class="userclass" id="username" type="username" placeholder="ユーザー名"></p>
     <p><input class="passclass" id="password" type="password" placeholder="パスワード"></p>
+    <p><input id="password_retype" type="password" placeholder="パスワード確認用"></p>
     <p>あなたの色を選択 <input id="color" type="color"></p>
     <p><button id="register">新規作成</button></p>
     <p><button id="login_page">アカウントをすでにお持ちの方はこちら</button></p>
@@ -34,25 +35,30 @@
     document.querySelector("#register").onclick = async (event) => {
       const username = document.querySelector("#username").value;
       const original_pass = document.querySelector("#password").value;
+      const original_pass_retype = document.querySelector("#password_retype").value;
       const color = document.querySelector("#color").value;
 
-      if (username.length >= 1 && original_pass.length >= 1){ // ユーザー名、パスワードが１文字以上入力されている場合
-        const password = $.md5(original_pass); // MD5でパスワードをハッシュ値に変換
+      if (original_pass === original_pass_retype){
+        if (username.length >= 1 && original_pass.length >= 1){ // ユーザー名、パスワードが１文字以上入力されている場合
+          const password = $.md5(original_pass); // MD5でパスワードをハッシュ値に変換
 
-        const response = await fetch("/register", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username, password, color})
-        });
-        let result = await response.text();
-        alert(result);
+          const response = await fetch("/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password, color})
+          });
+          let result = await response.text();
+          alert(result);
 
-        if (result == 0){
-          location.href = 'login.html';
+          if (result == 0){
+            location.href = 'login.html';
+          }
+
+        }else{
+          alert('ユーザー名、またはパスワードを１文字以上入力してください');
         }
-
       }else{
-        alert('ユーザー名、またはパスワードを１文字以上入力してください');
+        alert('パスワードが確認用と一致しません');
       }
     }
 

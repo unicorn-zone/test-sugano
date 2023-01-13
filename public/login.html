@@ -4,121 +4,59 @@
 <head>
   <title>ログイン</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles2.css">
 </head>
 
 <div class="bg_pattern Paper_v2"></div>
 <body>
   <div class="header">
-  <h1>ShareCalendar</h1>
+    <h1>ShareCalendar</h1>
   </div>
-  <h2>ログイン</h2>
-  <input id="username" type="text" />
-  <input id="password" type="text" />
-  <button id="login">ログイン</button>
-  <button id="register_page" class="click" >アカウントをお持ちでない方はこちら</button>
+  <h1>ログイン</h1>
+
+  <div class="login">
+    <p><input id="username" type="username" placeholder="ユーザー名"></p>
+    <p><input id="password" type="password" placeholder="パスワード"></p>
+    <p><button id="login">ログイン</button></p>
+    <p><button id="register_page" class="click" >アカウントをお持ちでない方はこちら</button></p>
+  </div>
 
   <script src="jquery.js"></script>
   <script src="jquery.md5.js"></script>
-
-  <nobr id = "days_op"></nobr>
-  <table border="1">
-    <tr>
-      <th>日</th>
-      <th>月</th>
-      <th>火</th>
-      <th>水</th>
-      <th>木</th>
-      <th>金</th>
-      <th>土</th>
-    </tr>
-    <tr>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-    </tr>
-    <tr>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-    </tr>
-    <tr>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-    </tr>
-    <tr>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-    </tr>
-    <tr>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-      <th><nobr id = "days_op"></nobr></th>
-    </tr>
-  </table>
-
-
   <script type="module">
 
     window.onload = async (event) => {
     }
 
     document.querySelector("#login").onclick = async (event) => {
-      const username = document.querySelector("#username").value;
+      const user = document.querySelector("#username").value;
       const original_pass = document.querySelector("#password").value;
-      const password = $.md5(original_pass); // MD5でパスワードをハッシュ値に変換
+      const pass = $.md5(original_pass); // MD5でパスワードをハッシュ値に変換
       
       const response = await fetch("/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ user, pass })
       });
       let result = await response.text();
-      alert(result);
-
-      if (result >= 1) { // ログイン成功した場合
-        alert('ログイン成功');
+      console.log(result);
+      if (result == 0) { // ログイン成功した場合
         location.href = 'calendar.html';
 
-      }else{ // ログイン失敗（またはエラーが発生）した場合
-        if (result == -1) {
-          alert('ユーザー名、またはパスワードが違います');
-        }else if (result == -2) {
-          alert('データベースで技術的な問題が発生しているため、運営に連絡してください');
-        }else if (result == -3) {
-          alert('サーバーで構文エラーが発生しているため、運営に連絡してください');
-        }else{
-          alert('予期せぬエラーが発生したため、運営に連絡してください');
-        }
+      }else if (result == -1) { // ログイン失敗（またはエラーが発生）した場合
+        alert('ユーザー名、またはパスワードが違います');
+      }else if (result == -2) {
+        alert('データベースで技術的な問題が発生しているため、運営に連絡してください');
+      }else if (result == -3) {
+        alert('サーバーで構文エラーが発生しているため、運営に連絡してください');
+      }else{
+        alert('予期せぬエラーが発生したため、運営に連絡してください');
       }
     }
 
     document.querySelector("#register_page").onclick = async (event) => {
       location.href = 'register.html';
     }
-    
   </script>
 
 </body>
