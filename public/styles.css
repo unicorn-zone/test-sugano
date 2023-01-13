@@ -108,9 +108,9 @@ header{
 }
   
 .invite{
-    /*position: relative;
-    bottom: 90px;
-    */
+    position: relative;
+    bottom: 20px;
+    
     float: right;
     text-align: right;
     padding-bottom: 0px;
