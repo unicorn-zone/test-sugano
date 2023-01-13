@@ -1,7 +1,7 @@
 .calendar {
     border-collapse: collapse;
     table-layout: fixed;
-    margin-top: 35px;
+    margin-top: 15px;
   }
   .calendar th {
     border: 1px solid #000000;
@@ -110,22 +110,17 @@
     text-align: right;
 }
 
-/*button#back{
-    position: relative;
-    top: 30px;
-    right: 465px;
+button#back{
+    
     padding-left: 10px;
     padding-right: 10px;
 }
 button#next{
-    /*position: relative;
-    top: 30px;
-    display: flex;
-    justify-content: flex-end;
+    
     padding-left: 10px;
     padding-right: 10px;
 }
- */ 
+ 
   
   h1{
     font-family: "Yu Mincho";
