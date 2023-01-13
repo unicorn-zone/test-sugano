@@ -112,6 +112,7 @@
 
 .backmonth{
     text-align: left;
+    margin-top: 10px;
 }
 
 button#back{
@@ -123,7 +124,7 @@ button#back{
 }
 .nextmonth{
     text-align: right;
-
+    margin-bottom: 10px
 }
 button#next{
     padding-top: 5px;
