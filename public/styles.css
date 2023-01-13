@@ -113,17 +113,12 @@
 
 
 button#back{
-    /*margin-right: 1020px;*/
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
 }
 .nextmonth{
-/*    text-align: right;
-    margin-bottom: 5px;
-    margin-top: 20px
-*/
 display:inline-block;
 display: flex;
 justify-content: space-between;
