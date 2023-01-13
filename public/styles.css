@@ -110,6 +110,10 @@
     text-align: right;
 }
 
+.backmonth{
+    text-align: left;
+}
+
 button#back{
     text-align: left;
     padding-top: 5px;
