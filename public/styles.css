@@ -121,7 +121,7 @@ button#back{
     text-align: right;
 
 }
-.nextmonth#next{
+button#next{
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 10px;
