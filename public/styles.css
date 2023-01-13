@@ -98,7 +98,9 @@
   
 
 
-
+.header{
+    margin-bottom: 0px;
+}
   
 .invite{
     position: relative;
