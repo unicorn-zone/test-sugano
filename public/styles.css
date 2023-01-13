@@ -99,14 +99,14 @@
 
 
 header{
-    margin-bottom: 0px; 
+    padding-bottom: 0px; 
 }
   
 .invite{
     position: relative;
     bottom: 90px;
     text-align: right;
-    margin-bottom: 0px; 
+    padding-bottom: 0px; 
 }
 
 .invite button{
