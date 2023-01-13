@@ -2,6 +2,8 @@
     border-collapse: collapse;
     table-layout: fixed;
     margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
   .calendar th {
     border: 1px solid #000000;
