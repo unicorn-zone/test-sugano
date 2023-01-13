@@ -120,7 +120,8 @@ button#back{
 button#next{
     /*position: relative;
     top: 30px;*/
-    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
     padding-left: 10px;
     padding-right: 10px;
 }
