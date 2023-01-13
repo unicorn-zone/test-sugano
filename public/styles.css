@@ -96,16 +96,20 @@
   }
   
   
-
+.yohaku{
+    margin-top: 0px;
+}
 
 header{
-    padding-bottom: 0px; 
+    padding-bottom: 0px;
+    margin-bottom: 0px; 
 }
   
 .invite{
     position: relative;
     bottom: 90px;
     text-align: right;
+    padding-bottom: 0px;
     padding-bottom: 0px; 
 }
 
