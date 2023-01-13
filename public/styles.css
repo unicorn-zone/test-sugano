@@ -118,11 +118,12 @@ button#back{
     padding-right: 10px;
 }
 button#next{
-    margin-left: auto;
-    padding-top: 5px;
+    text-align: right;
+    /*padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
+    */
 }
  
   
