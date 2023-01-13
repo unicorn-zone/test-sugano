@@ -1,25 +1,4 @@
-h1{
-   font-family: "Yu Mincho";
-}
 
-
-table{
-    margin: 20px;
-}
-th{
-    height: 60px;
-    color: black;
-    background-color: #fffaf0;
-    font-size: 60px;
-    text-align: center;
-    font-family:  "Yu Mincho";
-}
-tr *:first-child{
-    color: #ff69b4;
-}
-tr *:last-child{
-    color: #0ba9ea;
-}
 
 .bg_pattern {
     position: fixed;
