@@ -117,7 +117,7 @@ button#back{
     padding-left: 10px;
     padding-right: 10px;
 }
-button#next{
+.month button#next{
     margin-left: auto;
     padding-top: 5px;
     padding-bottom: 5px;
