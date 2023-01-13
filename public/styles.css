@@ -114,13 +114,15 @@ button#back{
     position: relative;
     top: 30px;
     right: 450px;
-    padding: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 button#next{
     position: relative;
     top: 30px;
     left: 300px;
-    padding: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
   
   
