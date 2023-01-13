@@ -118,9 +118,9 @@ button#back{
     padding-right: 10px;
 }
 button#next{
-    position: relative;
-    top: 30px;
-    left: 325px;
+    /*position: relative;
+    top: 30px;*/
+    text-align: right;
     padding-left: 10px;
     padding-right: 10px;
 }
