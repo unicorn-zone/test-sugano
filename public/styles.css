@@ -110,7 +110,7 @@
     text-align: right;
 }
 
-button#back{
+/*button#back{
     position: relative;
     top: 30px;
     right: 465px;
@@ -119,13 +119,13 @@ button#back{
 }
 button#next{
     /*position: relative;
-    top: 30px;*/
+    top: 30px;
     display: flex;
     justify-content: flex-end;
     padding-left: 10px;
     padding-right: 10px;
 }
-  
+ */ 
   
   h1{
     font-family: "Yu Mincho";
