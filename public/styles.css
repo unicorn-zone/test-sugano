@@ -99,8 +99,9 @@
 
   
 .invite{
+    position: relative;
+    bottom: 40px;
     text-align: right;
-    transform: translate(0px,-30px)
 }
 
 .invite button{
