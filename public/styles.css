@@ -118,8 +118,6 @@ button#back{
     padding-right: 10px;
 }
 button#next{
-    display: grid;
-    justify-content: right;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 10px;
