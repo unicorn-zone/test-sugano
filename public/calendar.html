@@ -44,7 +44,9 @@
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
+
   <div class="yohaku">
+
   <input id="comment_ip" type="text" placeholder="予定の内容" />
   <input id="sche_start_ip" type="datetime-local" />
   <!-- <input id="sche_end_ip" type="datetime-local" /> -->
@@ -905,17 +907,20 @@
           let temp2 = temp[0].split('-');
           let slot = Number(temp2[2]) + zure;
 
-          console.log(color);
+
+          let temp3 = temp[1].split(':');
+          let hour_minute = temp3[0] + ":" + temp3[1];
 
           if (flags[slot] == true){
-            document.getElementById(`n${slot}_1`).textContent = user
+            document.getElementById(`n${slot}_1`).textContent = user + " " + hour_minute
+            
             document.getElementById(`th${slot}_1`).style.backgroundColor = `${color}`
             document.getElementById(`c${slot}_1`).textContent = comment
             flags[slot] = false;
             
           }else{
             document.getElementById(`n${slot}_2`).textContent = document.getElementById(`n${slot}_1`).textContent
-            document.getElementById(`n${slot}_1`).textContent = user
+            document.getElementById(`n${slot}_1`).textContent = user + " " + hour_minute
             
             document.getElementById(`th${slot}_2`).style.backgroundColor = document.getElementById(`th${slot}_1`).style.backgroundColor
             document.getElementById(`th${slot}_1`).style.backgroundColor = `${color}`
