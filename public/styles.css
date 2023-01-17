@@ -1,6 +1,6 @@
 .calendar {
-    /*border-collapse: collapse;
-    table-layout: fixed;*/
+    border-collapse: collapse;
+    table-layout: fixed;
     margin-top: 5px;
     margin-left: 20px;
     margin-right: 20px;
