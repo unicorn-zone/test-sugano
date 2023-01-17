@@ -113,6 +113,9 @@
 header{
     padding-bottom: 0px;
     margin-bottom: 0px; 
+    display:inline-block;
+    display: flex;
+    justify-content: space-between;
 }
   
 .invite{
